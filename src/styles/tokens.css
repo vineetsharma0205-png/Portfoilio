@@ -1,0 +1,87 @@
+/* =========================================================================
+   Change colors and fonts here.
+   Single source of truth for design tokens, typography, spacing, and theming.
+   ========================================================================= */
+
+:root {
+  /* Surface and ink palette (Warm paper engineering spec sheet) */
+  --bg: #F3F0E8;
+  --surface: #FBF9F4;
+  --surface-alt: #EBE7DD;
+  --ink: #181817;
+  --muted: #6B6860;
+  --line: #D8D3C6;
+
+  /* Accent colors */
+  --accent: #C8471B;         /* safety orange: links, key numbers, active states only */
+  --accent-hover: #AB3B15;
+  --accent-2: #2F4858;       /* deep slate: tags, secondary emphasis */
+  --accent-2-bg: #E3E9ED;
+  --accent-2-border: #BBCAD2;
+
+  /* Status and feedback colors */
+  --success: #1E6B37;
+  --success-bg: #E8F5EC;
+  --error: #B82828;
+  --error-bg: #FDF0F0;
+  --focus-ring: rgba(200, 71, 27, 0.35);
+  --grid-line: rgba(24, 24, 23, 0.06);
+  --grid-dot: rgba(24, 24, 23, 0.12);
+
+  /* Typography */
+  --font-body: "Archivo", system-ui, -apple-system, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+
+  /* Fluid type scale using clamp() */
+  --text-xs: clamp(0.72rem, 0.68rem + 0.2vw, 0.8rem);
+  --text-sm: clamp(0.8125rem, 0.775rem + 0.2vw, 0.875rem);
+  --text-base: clamp(0.9375rem, 0.8875rem + 0.25vw, 1.0625rem);
+  --text-lg: clamp(1.125rem, 1.05rem + 0.35vw, 1.25rem);
+  --text-xl: clamp(1.25rem, 1.15rem + 0.5vw, 1.5rem);
+  --text-2xl: clamp(1.5rem, 1.35rem + 0.75vw, 1.875rem);
+  --text-3xl: clamp(1.875rem, 1.6rem + 1.25vw, 2.5rem);
+  --text-hero: clamp(2.25rem, 1.85rem + 2vw, 3.75rem);
+
+  /* Spacing */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 1rem;
+  --space-4: 2rem;
+  --space-5: 4rem;
+  --space-6: 8rem;
+
+  /* Layout and shapes */
+  --max-width: 1120px;
+  --header-h: 64px;
+  --radius: 3px;
+
+  /* Motion */
+  --transition-fast: 150ms ease;
+  --transition-base: 250ms ease;
+}
+
+[data-theme="dark"] {
+  /* Blueprint dark theme */
+  --bg: #131312;
+  --surface: #1B1B19;
+  --surface-alt: #22221F;
+  --ink: #ECE8DF;
+  --muted: #9A968B;
+  --line: #2E2D2A;
+
+  /* Accent overrides */
+  --accent: #E0612F;
+  --accent-hover: #F27848;
+  --accent-2: #7AA2B8;
+  --accent-2-bg: #1A2830;
+  --accent-2-border: #2C424E;
+
+  /* Status overrides */
+  --success: #48BB78;
+  --success-bg: #12281D;
+  --error: #F56565;
+  --error-bg: #2C1515;
+  --focus-ring: rgba(224, 97, 47, 0.4);
+  --grid-line: rgba(236, 232, 223, 0.05);
+  --grid-dot: rgba(236, 232, 223, 0.1);
+}

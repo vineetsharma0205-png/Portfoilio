@@ -1,0 +1,162 @@
+{
+  "meta": {
+    "siteUrl": "https://YOUR-DOMAIN.vercel.app",
+    "title": "Vineet Sharma | Mechanical Engineering",
+    "description": "Mechanical engineering student at IIITDM Kurnool working on CAD/CAE, structural FEA, and electromechanical prototyping.",
+    "ogImage": "/og-image.png"
+  },
+  "sections": ["about", "experience", "projects", "skills", "certifications", "contact"],
+  "identity": {
+    "name": "Vineet Sharma",
+    "location": "Hyderabad, India",
+    "email": "vineetsharma.0205@gmail.com",
+    "phone": "",
+    "github": "https://github.com/Teeniv-16",
+    "linkedin": "",
+    "resume": "/resume.pdf"
+  },
+  "hero": {
+    "descriptor": "Mechanical engineering student at IIITDM Kurnool (2027). I work on CAD/CAE, structural FEA, and electromechanical prototyping.",
+    "primaryCta": { "label": "View projects", "href": "#projects" },
+    "secondaryCta": { "label": "Resume", "href": "/resume.pdf" },
+    "specs": [
+      { "label": "Location", "value": "Hyderabad, India" },
+      { "label": "Degree", "value": "B.Tech Mechanical Engineering, 2023-2027" },
+      { "label": "Focus", "value": "Suspension design, mechanism design, embedded prototyping" }
+    ]
+  },
+  "about": {
+    "paragraphs": [
+      "I am an undergraduate mechanical engineering student at IIITDM Kurnool with hands-on experience in CAD/CAE, structural FEA, electromechanical prototyping, and system-level vehicle design.",
+      "My work spans IIT Roorkee research, BAJA SAE suspension engineering, and multi-disciplinary fabrication projects, each with measured results."
+    ],
+    "metrics": [
+      { "value": "12%", "label": "Unsprung mass reduction", "source": "BAJA SAE suspension" },
+      { "value": "10%", "label": "Build cost reduction", "source": "Go-kart" },
+      { "value": "15%", "label": "Assembly time reduction", "source": "Ambient Node" },
+      { "value": "~8%", "label": "Structural efficiency gain", "source": "All-terrain rover" }
+    ]
+  },
+  "experience": [
+    {
+      "role": "Research Intern",
+      "org": "IIT Roorkee",
+      "place": "Roorkee, India",
+      "start": "May 2026",
+      "end": "Jul 2026",
+      "points": [
+        "Designed and fabricated an assistive page-reading device for visually impaired users, integrating mechanical actuation with embedded control.",
+        "Engineered a custom Braille display cam-actuation mechanism in SolidWorks for repeatable haptic output and compact packaging.",
+        "Developed a Python-based GUI supporting digital document upload, automated text parsing, and real-time serial communication with hardware.",
+        "Programmed an Arduino microcontroller to drive stepper motors, synchronizing rotational cam movements with incoming digital text streams."
+      ],
+      "image": { "src": "/images/braille-cam-mechanism.jpg", "alt": "Braille cam mechanism CAD assembly", "placeholder": "Image placeholder: Braille cam mechanism" }
+    }
+  ],
+  "projects": [
+    {
+      "id": "baja-suspension",
+      "title": "Suspension, BAJA SAE",
+      "start": "Nov 2025",
+      "end": "Present",
+      "featured": true,
+      "summary": "Off-road suspension designed for fatigue resistance under harsh terrain loads.",
+      "details": [
+        "Defined suspension geometry and hardpoints, validating structural integrity with FEA and multi-body dynamics simulations.",
+        "Optimized load paths to reduce unsprung mass by 12% while preserving 100% structural reliability."
+      ],
+      "tags": ["FEA", "Multibody dynamics", "Suspension geometry"],
+      "image": { "src": "/images/baja-suspension.jpg", "alt": "BAJA SAE off-road suspension CAD render", "placeholder": "Image placeholder: suspension CAD or FEA plot" },
+      "link": ""
+    },
+    {
+      "id": "braille-device",
+      "title": "Assistive Page-Reading Device",
+      "start": "May 2026",
+      "end": "Jul 2026",
+      "featured": true,
+      "summary": "Braille display with cam-actuated haptic output, built during the IIT Roorkee internship.",
+      "details": ["See the Experience section for full details."],
+      "tags": ["SolidWorks", "Arduino", "Python"],
+      "image": { "src": "/images/braille-cam-mechanism.jpg", "alt": "Assistive Braille page-reading mechanism", "placeholder": "Image placeholder: Braille device" },
+      "link": "#experience"
+    },
+    {
+      "id": "go-kart",
+      "title": "Go-Kart Design & Fabrication",
+      "start": "Aug 2025",
+      "end": "Present",
+      "featured": false,
+      "summary": "End-to-end design and fabrication of a student go-kart: chassis, drivetrain, braking.",
+      "details": [
+        "Applied material selection and DFM/DFA across procurement, jigging, and workshop assembly.",
+        "Reduced build cost by 10% while meeting structural and dynamic targets."
+      ],
+      "tags": ["DFM/DFA", "Fabrication", "Material selection"],
+      "image": { "src": "", "alt": "Go-kart", "placeholder": "Image placeholder: go-kart" },
+      "link": ""
+    },
+    {
+      "id": "ambient-node",
+      "title": "Ambient Node, Kinetic LED Lamp",
+      "start": "Dec 2025",
+      "end": "Present",
+      "featured": false,
+      "summary": "Modular electromechanical lamp emphasizing repeatability, thermal clearance, and serviceability.",
+      "details": [
+        "Parametric 3D CAD assemblies with articulated joints and protective enclosures for sensors and power electronics.",
+        "Modular architecture reduced assembly time by 15%."
+      ],
+      "tags": ["Parametric CAD", "Electromechanical", "Modular design"],
+      "image": { "src": "", "alt": "Kinetic LED lamp", "placeholder": "Image placeholder: lamp assembly" },
+      "link": ""
+    },
+    {
+      "id": "rover-cad",
+      "title": "All-Terrain Rover CAD & Structural Analysis",
+      "start": "Aug 2024",
+      "end": "Sep 2024",
+      "featured": false,
+      "summary": "Weight-optimized rover assembly focused on stiffness-to-weight ratio.",
+      "details": [
+        "Static stress and load simulations in ANSYS under peak operational loads.",
+        "Validated safety factors and documentation, improving structural efficiency by about 8%."
+      ],
+      "tags": ["ANSYS", "CAD", "Structural analysis"],
+      "image": { "src": "/images/rover-cad-fea.jpg", "alt": "All-terrain rover CAD & FEA structural stress analysis", "placeholder": "Image placeholder: rover render" },
+      "link": ""
+    },
+    {
+      "id": "strain-analysis",
+      "title": "Strain Analysis of Heterogeneous Structures",
+      "start": "Aug 2024",
+      "end": "Dec 2024",
+      "featured": false,
+      "summary": "Stress-strain response of heterogeneous material architectures under varying loads.",
+      "details": [
+        "Wrote MATLAB algorithms to evaluate strain distribution and deformation fields.",
+        "Improved predictive accuracy of deformation, giving a data-driven basis for structural validation and failure prevention."
+      ],
+      "tags": ["MATLAB", "Stress-strain", "Numerical methods"],
+      "image": { "src": "", "alt": "Strain field plot", "placeholder": "Image placeholder: strain plot" },
+      "link": ""
+    }
+  ],
+  "skills": [
+    { "group": "CAD & CAE", "items": ["SolidWorks", "Siemens NX (Certified)", "Fusion 360", "CATIA", "ANSYS (Simulation)", "FEA", "GD&T", "DFM/DFA"] },
+    { "group": "Programming & Controls", "items": ["Python (GUI, Serial Communication)", "Arduino (Embedded C/C++)", "MATLAB"] },
+    { "group": "Core Engineering", "items": ["Thermodynamics", "Fluid Mechanics", "Heat Transfer", "Material Selection", "Mechanism Design"] },
+    { "group": "Manufacturing & Metrology", "items": ["Fabrication Processes", "Assembly Planning", "Project Management", "CMM and Metallurgical Microscope (Basic)"] }
+  ],
+  "certifications": [
+    { "title": "Siemens NX CAD Certification", "note": "Parametric 3D modeling, assemblies, engineering drawings" },
+    { "title": "Engineering Simulation: A Hands-on Introduction, Cornell University (MOOC)", "note": "FEA and CFD fundamentals" },
+    { "title": "Drone and Related Technologies Certification", "note": "UAV aerodynamics, airframe design, flight subsystems" }
+  ],
+  "contact": {
+    "heading": "Get in touch",
+    "text": "I am looking for internship and collaboration conversations in mechanical design, structural analysis, and mechatronics.",
+    "formEnabled": true
+  },
+  "footer": { "text": "Built with Vite and vanilla JS." }
+}
