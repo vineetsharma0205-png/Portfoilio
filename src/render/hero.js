@@ -24,18 +24,13 @@ export function renderHero({ hero, identity }) {
   const content = document.createElement('div');
   content.className = 'hero-content';
 
-  const eyebrow = document.createElement('div');
-  eyebrow.className = 'hero-eyebrow';
-  eyebrow.textContent = 'MECHANICAL ENGINEERING PORTFOLIO';
-
   const title = document.createElement('h1');
   title.className = 'hero-main-title';
   title.textContent = identity.name.toUpperCase();
 
   const desc = document.createElement('p');
   desc.className = 'hero-descriptor';
-  desc.textContent = hero.descriptor ||
-    'Mechanical engineering student at IIITDM Kurnool (2027). Working on CAD/CAE, structural FEA, and electromechanical prototyping.';
+  desc.textContent = hero.descriptor || 'Working on CAD/CAE, structural FEA, and electromechanical prototyping.';
 
   const ctaCluster = document.createElement('div');
   ctaCluster.className = 'hero-cta-cluster';
@@ -55,7 +50,6 @@ export function renderHero({ hero, identity }) {
   ctaCluster.appendChild(primaryBtn);
   ctaCluster.appendChild(secondaryBtn);
 
-  content.appendChild(eyebrow);
   content.appendChild(title);
   content.appendChild(desc);
   content.appendChild(ctaCluster);

@@ -1,5 +1,6 @@
 /**
- * Certifications render module: Thanh Tran (thanhvtran.com) verified credentials cards.
+ * Certifications render module: Single-line vertical list manner.
+ * Clean, minimal rows with verification indicator, title, and credential note.
  */
 
 export function renderCertifications(certList, indexString = '05') {
@@ -14,23 +15,26 @@ export function renderCertifications(certList, indexString = '05') {
   heading.className = 'section-heading-dark';
   heading.innerHTML = `<span class="heading-accent-bar" aria-hidden="true"></span>CERTIFICATIONS`;
 
-  const grid = document.createElement('div');
-  grid.className = 'skills-thanh-grid';
+  const list = document.createElement('div');
+  list.className = 'certifications-single-line-list';
 
   (certList || []).forEach((cert) => {
-    const card = document.createElement('article');
-    card.className = 'skill-thanh-card';
+    const row = document.createElement('article');
+    row.className = 'cert-line-item';
 
-    card.innerHTML = `
-      <h3 class="skill-thanh-title">${cert.title}</h3>
-      <p style="font-size: var(--text-sm); line-height: 1.6; color: var(--ink-body); margin: 0;">${cert.note}</p>
+    row.innerHTML = `
+      <div class="cert-line-main">
+        <span class="cert-line-bullet" aria-hidden="true">✔</span>
+        <h3 class="cert-line-title">${cert.title}</h3>
+      </div>
+      <div class="cert-line-note font-mono">${cert.note}</div>
     `;
 
-    grid.appendChild(card);
+    list.appendChild(row);
   });
 
   container.appendChild(heading);
-  container.appendChild(grid);
+  container.appendChild(list);
   section.appendChild(container);
 
   return section;

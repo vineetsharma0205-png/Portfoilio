@@ -16,7 +16,7 @@
     "resume": "/resume.pdf"
   },
   "hero": {
-    "descriptor": "Mechanical engineering student at IIITDM Kurnool (2027). I work on CAD/CAE, structural FEA, and electromechanical prototyping.",
+    "descriptor": "Working on CAD/CAE, structural FEA, and electromechanical prototyping.",
     "primaryCta": { "label": "View projects", "href": "#projects" },
     "secondaryCta": { "label": "Resume", "href": "/resume.pdf" },
     "specs": [
@@ -27,8 +27,8 @@
   },
   "about": {
     "paragraphs": [
-      "I am an undergraduate mechanical engineering student at IIITDM Kurnool with hands-on experience in CAD/CAE, structural FEA, electromechanical prototyping, and system-level vehicle design.",
-      "My work spans IIT Roorkee research, BAJA SAE suspension engineering, and multi-disciplinary fabrication projects, each with measured results."
+      "I am an undergraduate mechanical engineering student with hands-on experience in CAD/CAE, structural FEA, electromechanical prototyping, and system-level vehicle design.",
+      "My work spans IIT Roorkee research internship, BAJA SAE suspension engineering, and multi-disciplinary fabrication projects, each validated with measurable real-world results."
     ],
     "metrics": [
       { "value": "12%", "label": "Unsprung mass reduction", "source": "BAJA SAE suspension" },
@@ -39,18 +39,18 @@
   },
   "experience": [
     {
-      "role": "Research Intern",
+      "role": "Project Intern",
       "org": "IIT Roorkee",
       "place": "Roorkee, India",
       "start": "May 2026",
       "end": "Jul 2026",
       "points": [
-        "Designed and fabricated an assistive page-reading device for visually impaired users, integrating mechanical actuation with embedded control.",
-        "Engineered a custom Braille display cam-actuation mechanism in SolidWorks for repeatable haptic output and compact packaging.",
-        "Developed a Python-based GUI supporting digital document upload, automated text parsing, and real-time serial communication with hardware.",
-        "Programmed an Arduino microcontroller to drive stepper motors, synchronizing rotational cam movements with incoming digital text streams."
+        "Designed and fabricated an assistive page reading technology for visually impaired users.",
+        "Designed a custom mechanism for Braille display in SolidWorks for compact packaging and reliable haptic output.",
+        "Developed a Python-based graphical user interface supporting digital document upload, automated text parsing, and real-time serial communication with hardware.",
+        "Programmed an Arduino microcontroller to interpret incoming digital text streams and drive stepper motors, accurately translating document data into synchronized rotational movements for haptic reading."
       ],
-      "image": { "src": "/images/braille-cam-mechanism.jpg", "alt": "Braille cam mechanism CAD assembly", "placeholder": "Image placeholder: Braille cam mechanism" }
+      "image": { "src": "/images/braille-cam-mechanism.jpg", "alt": "Braille mechanism CAD assembly", "placeholder": "Image placeholder: Braille mechanism" }
     }
   ],
   "projects": [
@@ -143,15 +143,15 @@
     }
   ],
   "skills": [
-    { "group": "CAD & CAE", "items": ["SolidWorks", "Siemens NX (Certified)", "Fusion 360", "CATIA", "ANSYS (Simulation)", "FEA", "GD&T", "DFM/DFA"] },
-    { "group": "Programming & Controls", "items": ["Python (GUI, Serial Communication)", "Arduino (Embedded C/C++)", "MATLAB"] },
-    { "group": "Core Engineering", "items": ["Thermodynamics", "Fluid Mechanics", "Heat Transfer", "Material Selection", "Mechanism Design"] },
-    { "group": "Manufacturing & Metrology", "items": ["Fabrication Processes", "Assembly Planning", "Project Management", "CMM and Metallurgical Microscope (Basic)"] }
+    { "group": "Domain Subjects", "items": ["Engineering Mechanics", "Strength of Materials", "Machine Design", "Structural Analysis", "Mechanical Vibrations", "Heat Transfer", "Thermodynamics", "Fluid Mechanics"] },
+    { "group": "Design Software", "items": ["Siemens NX (Certified)", "SolidWorks / CATIA", "ANSYS (Structural & Thermal FEA)", "MATLAB", "CAD Simplification", "GD&T"] },
+    { "group": "Manufacturing & Testing", "items": ["Ti-6Al-4V Turning", "Laser Doppler Vibrometry", "CNC Programming", "Welding & Fabrication", "Casting & Forging", "Surface Roughness QC"] },
+    { "group": "Standards & Code", "items": ["BIS Standards", "Drawing Conventions", "Python (GUI & Serial)", "Arduino Microcontrollers", "MATLAB Algorithms", "Hand Calculations"] }
   ],
   "certifications": [
-    { "title": "Siemens NX CAD Certification", "note": "Parametric 3D modeling, assemblies, engineering drawings" },
-    { "title": "Engineering Simulation: A Hands-on Introduction, Cornell University (MOOC)", "note": "FEA and CFD fundamentals" },
-    { "title": "Drone and Related Technologies Certification", "note": "UAV aerodynamics, airframe design, flight subsystems" }
+    { "title": "Siemens NX CAD Certification", "note": "Certified 2025 · Parametric 3D modeling, assemblies, and drafting standards" },
+    { "title": "Drone Technology Certification", "note": "Certified 2024 · UAV aerodynamics, airframe design, flight subsystems" },
+    { "title": "Engineering Simulation: A Hands-on Introduction", "note": "Cornell University (MOOC) · FEA and CFD fundamentals" }
   ],
   "contact": {
     "heading": "Get in touch",

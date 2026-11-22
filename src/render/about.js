@@ -17,49 +17,14 @@ export function renderAbout(about, indexString = '01') {
   heading.className = 'section-heading-dark';
   heading.innerHTML = `<span class="heading-accent-bar" aria-hidden="true"></span>ABOUT ME`;
 
-  // Summary narrative
+  // Summary narrative with generous reading width space
   const leadText = document.createElement('p');
   leadText.className = 'summary-lead';
   leadText.textContent = (about.paragraphs && about.paragraphs.join(' ')) ||
-    "I am an undergraduate mechanical engineering student at IIITDM Kurnool with hands-on experience in CAD/CAE, structural FEA, electromechanical prototyping, and system-level vehicle design. My work spans IIT Roorkee research, BAJA SAE suspension engineering, and multi-disciplinary fabrication projects, each validated with measurable real-world results.";
-
-  // Personality Grid: Strengths & Weaknesses
-  const grid = document.createElement('div');
-  grid.className = 'personality-grid';
-
-  // Strengths Card
-  const strengthsCard = document.createElement('div');
-  strengthsCard.className = 'personality-card';
-  strengthsCard.innerHTML = `
-    <h3 class="personality-title">STRENGTHS</h3>
-    <ul class="personality-list">
-      <li>SolidWorks & Siemens NX (Certified) CAD modeling with strict DFM/DFA compliance</li>
-      <li>Finite Element Analysis (FEA) & dynamic structural load validation in ANSYS</li>
-      <li>Electromechanical prototyping: Arduino microcontrollers, stepper motor drive systems & serial communication</li>
-      <li>Hands-on metal fabrication, workshop machining, and physical assembly</li>
-      <li>Data-driven numerical modeling and deformation field computation in MATLAB & Python</li>
-    </ul>
-  `;
-
-  // Weaknesses Card (Authentic & Relatable Engineer Traits)
-  const weaknessesCard = document.createElement('div');
-  weaknessesCard.className = 'personality-card weakness';
-  weaknessesCard.innerHTML = `
-    <h3 class="personality-title">WEAKNESSES</h3>
-    <ul class="personality-list">
-      <li>Obsessive about CAD feature tree cleanliness, naming conventions, and fully defined sketches</li>
-      <li>Can spend excessive hours fine-tuning FEA mesh convergence and boundary conditions</li>
-      <li>Prefers physical workshop fabrication and machining over prolonged meetings</li>
-      <li>Strong coffee dependency during vehicle build and testing cycles</li>
-    </ul>
-  `;
-
-  grid.appendChild(strengthsCard);
-  grid.appendChild(weaknessesCard);
+    "I am an undergraduate mechanical engineering student with hands-on experience in CAD/CAE, structural FEA, electromechanical prototyping, and system-level vehicle design. My work spans IIT Roorkee research internship, BAJA SAE suspension engineering, and multi-disciplinary fabrication projects, each validated with measurable real-world results.";
 
   container.appendChild(heading);
   container.appendChild(leadText);
-  container.appendChild(grid);
 
   // Quantitative Performance Metrics Strip
   if (about.metrics && about.metrics.length > 0) {
