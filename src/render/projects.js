@@ -1,12 +1,12 @@
 /**
- * Projects render module: Paul Fey inspired Blueprint Crate & Dossier Cards.
- * Features catalog references (DWG-001..), CAD previews, and interactive
- * Gatefold Blueprint Drawer inspection.
+ * Projects render module: Super Eight Studio "SELECTED WORK" exact architecture.
+ * Alternating full-width hero and 2-column cards, floating badge pills,
+ * and seamless Gatefold Blueprint Drawer case study modal trigger.
  */
 
 import { openBlueprintDrawer } from './drawer.js';
 
-export function renderProjects(projectsList, indexString = '03') {
+export function renderProjects(projectsList, indexString = '01') {
   const section = document.createElement('section');
   section.className = 'section-wrapper reveal';
   section.id = 'projects';
@@ -14,237 +14,62 @@ export function renderProjects(projectsList, indexString = '03') {
   const container = document.createElement('div');
   container.className = 'container';
 
-  // Section header
+  // Section Header (Super Eight Serif Title)
   const header = document.createElement('header');
   header.className = 'section-header';
   header.innerHTML = `
-    <span class="section-tag">${indexString} / Dossiers</span>
-    <h2 class="section-title">Design, CAD & Analysis Archives</h2>
+    <div class="section-eyebrow">${indexString} / SELECTED WORK</div>
+    <h2 class="section-serif-title font-serif">Selected Engineering Work</h2>
   `;
 
-  const projectsContainer = document.createElement('div');
-  projectsContainer.className = 'projects-container';
+  // Projects Grid
+  const grid = document.createElement('div');
+  grid.className = 'projects-grid';
 
-  const featuredProjects = (projectsList || []).filter(p => p.featured);
-  const compactProjects = (projectsList || []).filter(p => !p.featured);
+  (projectsList || []).forEach((proj, idx) => {
+    const item = document.createElement('div');
+    item.className = `project-item ${proj.featured ? 'is-featured' : ''}`;
 
-  // 1. Featured projects (Large Dossier Cards)
-  if (featuredProjects.length > 0) {
-    const featuredGrid = document.createElement('div');
-    featuredGrid.className = 'featured-projects';
+    const card = document.createElement('article');
+    card.className = 'project-card-s8';
+    card.id = `project-${proj.id}`;
 
-    featuredProjects.forEach((proj, fIdx) => {
-      const catalogNum = `DWG-${String(fIdx + 1).padStart(3, '0')}`;
-      const card = document.createElement('article');
-      card.className = 'project-card';
-      card.id = `project-${proj.id}`;
+    // Media Wrapper
+    const media = document.createElement('div');
+    media.className = 'project-media-wrapper';
 
-      // Card Header
-      const cardHeader = document.createElement('div');
-      cardHeader.className = 'project-card-header';
-      cardHeader.innerHTML = `
-        <div>
-          <span class="project-dossier-id font-mono">${catalogNum}</span>
-          <h3 class="project-card-title">${proj.title}</h3>
-        </div>
-        <span class="project-date font-mono">${proj.start} — ${proj.end}</span>
-      `;
+    const imgSrc = proj.image && proj.image.src ? proj.image.src : '/images/baja-suspension.jpg';
+    const imgAlt = proj.image?.alt || proj.title;
 
-      // Card Body
-      const cardBody = document.createElement('div');
-      cardBody.className = 'project-card-body';
+    media.innerHTML = `
+      <img src="${imgSrc}" alt="${imgAlt}" class="project-media-img" loading="lazy">
+      <div class="project-floating-badge font-sans">
+        ${proj.tags && proj.tags.length ? proj.tags.slice(0, 2).join(' · ') : 'CAD / FEA'} · ${proj.end || '2026'}
+      </div>
+    `;
 
-      // CAD Image or dashed placeholder
-      if (proj.image) {
-        if (proj.image.src && proj.image.src.trim() !== '') {
-          const img = document.createElement('img');
-          img.src = proj.image.src;
-          img.alt = proj.image.alt || proj.title;
-          img.loading = 'lazy';
-          cardBody.appendChild(img);
-        } else if (proj.image.placeholder) {
-          const ph = document.createElement('div');
-          ph.className = 'placeholder-box';
-          ph.setAttribute('aria-hidden', 'true');
-          ph.innerHTML = `
-            <svg class="placeholder-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-              <rect x="3" y="3" width="18" height="18" rx="2" stroke-dasharray="3 3"/>
-              <circle cx="8.5" cy="8.5" r="1.5"/>
-              <polyline points="21 15 16 10 5 21"/>
-            </svg>
-            <span class="placeholder-text font-mono">${proj.image.placeholder}</span>
-          `;
-          cardBody.appendChild(ph);
-        }
-      }
+    // Footer Metadata
+    const footer = document.createElement('div');
+    footer.className = 'project-footer-meta';
+    footer.innerHTML = `
+      <h3 class="project-name">${proj.title}</h3>
+      <span class="project-serif-summary font-serif">${proj.summary}</span>
+    `;
 
-      // Summary
-      const summary = document.createElement('p');
-      summary.className = 'project-summary';
-      summary.textContent = proj.summary;
-      cardBody.appendChild(summary);
+    card.appendChild(media);
+    card.appendChild(footer);
 
-      // Details bullet list
-      if (proj.details && proj.details.length > 0) {
-        const ul = document.createElement('ul');
-        ul.className = 'project-details-list';
-        proj.details.forEach((det) => {
-          const li = document.createElement('li');
-          li.textContent = det;
-          ul.appendChild(li);
-        });
-        cardBody.appendChild(ul);
-      }
-
-      // Tag cloud
-      if (proj.tags && proj.tags.length > 0) {
-        const tagCloud = document.createElement('div');
-        tagCloud.className = 'tag-cloud';
-        proj.tags.forEach((tag) => {
-          const chip = document.createElement('span');
-          chip.className = 'tag-chip';
-          chip.textContent = tag;
-          tagCloud.appendChild(chip);
-        });
-        cardBody.appendChild(tagCloud);
-      }
-
-      // Interactive Blueprint Drawer Button
-      const openBtn = document.createElement('button');
-      openBtn.type = 'button';
-      openBtn.className = 'btn-open-dossier';
-      openBtn.innerHTML = `
-        <span>Inspect Blueprint Dossier [${catalogNum}]</span>
-        <span class="btn-open-dossier-arrow" aria-hidden="true">→</span>
-      `;
-      openBtn.addEventListener('click', () => {
-        openBlueprintDrawer(proj, fIdx + 1);
-      });
-      cardBody.appendChild(openBtn);
-
-      card.appendChild(cardHeader);
-      card.appendChild(cardBody);
-      featuredGrid.appendChild(card);
+    // Click triggers Gatefold Blueprint Drawer
+    card.addEventListener('click', () => {
+      openBlueprintDrawer(proj, idx + 1);
     });
 
-    projectsContainer.appendChild(featuredGrid);
-  }
-
-  // 2. Compact projects (Catalog List with Dossier Inspection)
-  if (compactProjects.length > 0) {
-    const compactSection = document.createElement('div');
-    compactSection.className = 'compact-projects-section';
-
-    const compactHeading = document.createElement('h3');
-    compactHeading.className = 'compact-projects-heading font-mono';
-    compactHeading.textContent = 'Additional Engineering Systems & Analyses';
-    compactSection.appendChild(compactHeading);
-
-    const compactList = document.createElement('div');
-    compactList.className = 'compact-list';
-
-    compactProjects.forEach((proj, cIdx) => {
-      const overallIndex = (featuredProjects.length || 0) + cIdx + 1;
-      const catalogNum = `DWG-${String(overallIndex).padStart(3, '0')}`;
-
-      const details = document.createElement('details');
-      details.className = 'compact-item';
-      details.id = `project-${proj.id}`;
-
-      // Summary clickable header
-      const summary = document.createElement('summary');
-      summary.className = 'compact-summary';
-      summary.innerHTML = `
-        <div class="compact-summary-left">
-          <div style="display: flex; align-items: center; gap: var(--space-2);">
-            <span class="project-dossier-id font-mono">${catalogNum}</span>
-            <span class="compact-title">${proj.title}</span>
-          </div>
-          <span class="compact-hook">${proj.summary}</span>
-        </div>
-        <div class="compact-summary-right">
-          <span class="compact-date font-mono">${proj.start} — ${proj.end}</span>
-          <span class="compact-indicator font-mono" aria-hidden="true">▶</span>
-        </div>
-      `;
-
-      // Expandable body
-      const expBody = document.createElement('div');
-      expBody.className = 'compact-expanded-body';
-
-      if (proj.details && proj.details.length > 0) {
-        const ul = document.createElement('ul');
-        ul.className = 'project-details-list';
-        proj.details.forEach((det) => {
-          const li = document.createElement('li');
-          li.textContent = det;
-          ul.appendChild(li);
-        });
-        expBody.appendChild(ul);
-      }
-
-      // Image or placeholder
-      if (proj.image) {
-        if (proj.image.src && proj.image.src.trim() !== '') {
-          const img = document.createElement('img');
-          img.src = proj.image.src;
-          img.alt = proj.image.alt || proj.title;
-          img.loading = 'lazy';
-          expBody.appendChild(img);
-        } else if (proj.image.placeholder) {
-          const ph = document.createElement('div');
-          ph.className = 'placeholder-box';
-          ph.setAttribute('aria-hidden', 'true');
-          ph.innerHTML = `
-            <svg class="placeholder-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-              <rect x="3" y="3" width="18" height="18" rx="2" stroke-dasharray="3 3"/>
-              <circle cx="8.5" cy="8.5" r="1.5"/>
-              <polyline points="21 15 16 10 5 21"/>
-            </svg>
-            <span class="placeholder-text font-mono">${proj.image.placeholder}</span>
-          `;
-          expBody.appendChild(ph);
-        }
-      }
-
-      // Tags
-      if (proj.tags && proj.tags.length > 0) {
-        const tagCloud = document.createElement('div');
-        tagCloud.className = 'tag-cloud';
-        proj.tags.forEach((tag) => {
-          const chip = document.createElement('span');
-          chip.className = 'tag-chip';
-          chip.textContent = tag;
-          tagCloud.appendChild(chip);
-        });
-        expBody.appendChild(tagCloud);
-      }
-
-      // Drawer trigger for compact items
-      const openBtn = document.createElement('button');
-      openBtn.type = 'button';
-      openBtn.className = 'btn-open-dossier';
-      openBtn.innerHTML = `
-        <span>Inspect Blueprint Dossier [${catalogNum}]</span>
-        <span class="btn-open-dossier-arrow" aria-hidden="true">→</span>
-      `;
-      openBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        openBlueprintDrawer(proj, overallIndex);
-      });
-      expBody.appendChild(openBtn);
-
-      details.appendChild(summary);
-      details.appendChild(expBody);
-      compactList.appendChild(details);
-    });
-
-    compactSection.appendChild(compactList);
-    projectsContainer.appendChild(compactSection);
-  }
+    item.appendChild(card);
+    grid.appendChild(item);
+  });
 
   container.appendChild(header);
-  container.appendChild(projectsContainer);
+  container.appendChild(grid);
   section.appendChild(container);
 
   return section;

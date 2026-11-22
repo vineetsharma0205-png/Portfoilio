@@ -1,9 +1,9 @@
 /**
- * Experience render module: engineering timeline, responsibilities,
- * and technical artifact placeholders.
+ * Experience render module: Super Eight Studio exact Process & Services row architecture.
+ * Clean rows partitioned by hairline dividers with tracked index numbers and editorial typography.
  */
 
-export function renderExperience(experienceList, indexString = '02') {
+export function renderExperience(experienceList, indexString = '03') {
   const section = document.createElement('section');
   section.className = 'section-wrapper reveal';
   section.id = 'experience';
@@ -11,74 +11,41 @@ export function renderExperience(experienceList, indexString = '02') {
   const container = document.createElement('div');
   container.className = 'container';
 
-  // Section header
+  // Section Header
   const header = document.createElement('header');
   header.className = 'section-header';
   header.innerHTML = `
-    <span class="section-tag">${indexString} / Experience</span>
-    <h2 class="section-title">Engineering Roles & Research</h2>
+    <div class="section-eyebrow">${indexString} / BACKGROUND & ROLES</div>
+    <h2 class="section-serif-title font-serif">Research & Vehicle Engineering</h2>
   `;
 
-  const timeline = document.createElement('div');
-  timeline.className = 'timeline';
+  const list = document.createElement('div');
+  list.className = 'experience-list';
 
-  (experienceList || []).forEach((item) => {
-    const card = document.createElement('article');
-    card.className = 'timeline-card';
+  (experienceList || []).forEach((item, idx) => {
+    const row = document.createElement('article');
+    row.className = 'experience-row';
 
-    // Header: Role, Org, Place, Date
-    const cardHeader = document.createElement('div');
-    cardHeader.className = 'timeline-header';
-    cardHeader.innerHTML = `
+    const indexNum = String(idx + 1).padStart(2, '0');
+
+    row.innerHTML = `
+      <div class="exp-index font-mono">${indexNum} // ${item.start} — ${item.end}</div>
       <div>
-        <h3 class="timeline-role">${item.role} <span class="timeline-org">@ ${item.org}</span></h3>
-        <span class="timeline-meta">${item.place}</span>
+        <h3 class="exp-role-title">${item.role}</h3>
+        <div class="exp-org-sub font-serif">${item.org} · ${item.place}</div>
       </div>
-      <div class="timeline-meta font-mono">${item.start} — ${item.end}</div>
+      <div>
+        <ul class="exp-bullets font-sans">
+          ${(item.points || []).map(pt => `<li>${pt}</li>`).join('')}
+        </ul>
+      </div>
     `;
 
-    // Points
-    const ul = document.createElement('ul');
-    ul.className = 'timeline-points';
-    (item.points || []).forEach((pt) => {
-      const li = document.createElement('li');
-      li.textContent = pt;
-      ul.appendChild(li);
-    });
-
-    card.appendChild(cardHeader);
-    card.appendChild(ul);
-
-    // Image or dashed placeholder
-    if (item.image) {
-      if (item.image.src && item.image.src.trim() !== '') {
-        const img = document.createElement('img');
-        img.src = item.image.src;
-        img.alt = item.image.alt || item.role;
-        img.className = 'project-image';
-        img.loading = 'lazy';
-        card.appendChild(img);
-      } else if (item.image.placeholder) {
-        const ph = document.createElement('div');
-        ph.className = 'placeholder-box';
-        ph.setAttribute('aria-hidden', 'true');
-        ph.innerHTML = `
-          <svg class="placeholder-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-            <rect x="3" y="3" width="18" height="18" rx="2" stroke-dasharray="3 3"/>
-            <circle cx="8.5" cy="8.5" r="1.5"/>
-            <polyline points="21 15 16 10 5 21"/>
-          </svg>
-          <span class="placeholder-text font-mono">${item.image.placeholder}</span>
-        `;
-        card.appendChild(ph);
-      }
-    }
-
-    timeline.appendChild(card);
+    list.appendChild(row);
   });
 
   container.appendChild(header);
-  container.appendChild(timeline);
+  container.appendChild(list);
   section.appendChild(container);
 
   return section;

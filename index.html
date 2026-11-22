@@ -26,17 +26,17 @@
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
-    <!-- Google Fonts: Bricolage Grotesque, Cormorant Garamond, JetBrains Mono, Archivo -->
+    <!-- Google Fonts: Big Shoulders Display, Instrument Sans, Instrument Serif, JetBrains Mono -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600&family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,500..800&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,400;1,600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@800;900&family=Instrument+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
 
-    <!-- Zero-Flash Theme Initialization Script (Runs synchronously before first paint) -->
+    <!-- Zero-Flash Theme Initialization Script -->
     <script>
       (function() {
         try {
           var stored = localStorage.getItem('portfolio-theme');
-          var theme = (stored === 'dark' || stored === 'light') ? stored : (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+          var theme = (stored === 'light' || stored === 'dark') ? stored : 'dark';
           document.documentElement.setAttribute('data-theme', theme);
         } catch (e) {}
       })();

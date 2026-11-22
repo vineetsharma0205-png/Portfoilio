@@ -1,67 +1,67 @@
 /* =========================================================================
    Change colors and fonts here.
    Single source of truth for design tokens, typography, spacing, and theming.
-   Inspired by Paul Fey's award-winning editorial & tactile design system.
+   Faithfully replicating Super Eight Studio (supereightstudio.com).
    ========================================================================= */
 
 :root {
-  /* Surface and ink palette (Paul Fey Warm Paper & Editorial Canvas) */
-  --bg: #F4F2ED;
-  --surface: #FAF6ED;
-  --surface-alt: #EAE4D6;
-  --ink: #151515;
-  --fg: #000000;
-  --muted: #68645D;
-  --line: #DCD5C5;
+  /* Super Eight Core Palette */
+  --ink: #131313;            /* Deep obsidian dark */
+  --ink-2: #2A2A2A;          /* Elevated dark */
+  --stone: #F6F5F1;          /* Primary warm stone surface */
+  --paper: #E7E5DF;          /* Card & docket background */
+  --card-bg: #FFFFFF;        /* Crisp card surface */
+  --muted: #6F6C66;          /* Medium contrast neutral */
+  --muted-dark: #A9A69E;     /* Soft stone contrast */
 
-  /* Paul Fey Signature Accent Palette */
-  --accent: #FF5A45;         /* Electric tomato red: primary focal accent, active states */
-  --accent-hover: #E64732;
-  --accent-2: #274862;       /* Deep blueprint slate: secondary tags, engineering specs */
-  --accent-2-bg: #E2E9EF;
-  --accent-2-border: #BACBD8;
+  /* Super Eight Signature Accents */
+  --teal: #07BCB4;           /* Electric cyan / teal signature highlight */
+  --teal-hover: #06A9A0;
+  --teal-soft: #9FECE4;
+  --orange: #F1501B;         /* Coral / orange brand secondary */
+  --orange-hover: #DA4818;
+  --orange-soft: #FFCFB0;
 
-  /* Floating Dark Capsule Navigation */
-  --pill-bg: #151515;
-  --pill-ink: #FAF6ED;
-  --pill-muted: #8E8A82;
+  /* Theme Mapping */
+  --bg: #131313;             /* Default hero and night-sky surface */
+  --bg-light: #F6F5F1;       /* Light sections surface */
+  --surface: #1C1C1C;
+  --surface-alt: #262626;
+  --text-main: #F6F5F1;
+  --text-dark: #131313;
+  --accent: #07BCB4;
+  --accent-hover: #06A9A0;
+  --accent-2: #F1501B;
 
-  /* Gatefold Case Study Blueprint Drawer */
-  --gatefold-bg: #121110;
-  --gatefold-surface: #1C1B18;
-  --gatefold-ink: #F1E8D8;
-  --gatefold-muted: rgba(241, 232, 216, 0.65);
-  --gatefold-line: rgba(241, 232, 216, 0.16);
+  /* Line Dividers & Outlines */
+  --line: rgba(246, 245, 241, 0.12);
+  --line-strong: rgba(246, 245, 241, 0.22);
+  --line-dark: rgba(19, 19, 19, 0.12);
 
-  /* Tactile Die-Cut Badges & Stickers */
-  --sticker-bg: #FFFFFF;
-  --sticker-border: #151515;
-  --sticker-shadow: rgba(21, 21, 21, 0.12);
+  /* Status and feedback */
+  --success: #07BCB4;
+  --success-bg: rgba(7, 188, 180, 0.12);
+  --error: #F1501B;
+  --error-bg: rgba(241, 80, 27, 0.12);
+  --focus-ring: rgba(7, 188, 180, 0.4);
 
-  /* Status and feedback colors */
-  --success: #1E6B37;
-  --success-bg: #E8F5EC;
-  --error: #B82828;
-  --error-bg: #FDF0F0;
-  --focus-ring: rgba(255, 90, 69, 0.4);
-  --grid-line: rgba(21, 21, 21, 0.06);
-  --grid-dot: rgba(21, 21, 21, 0.12);
+  /* Typography System (Super Eight 3-Voice Architecture) */
+  --font-display: "Big Shoulders Display", Impact, sans-serif;
+  --font-serif: "Instrument Serif", Georgia, serif;
+  --font-sans: "Instrument Sans", system-ui, -apple-system, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
+  --font-body: "Instrument Sans", system-ui, -apple-system, sans-serif;
 
-  /* Typography System */
-  --font-display: "Bricolage Grotesque", system-ui, -apple-system, sans-serif;
-  --font-serif: "Cormorant Garamond", Georgia, serif;
-  --font-mono: "JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
-  --font-body: "Archivo", system-ui, -apple-system, sans-serif;
-
-  /* Fluid type scale using clamp() */
+  /* Fluid Type Scale */
   --text-xs: clamp(0.72rem, 0.68rem + 0.2vw, 0.8rem);
   --text-sm: clamp(0.8125rem, 0.775rem + 0.2vw, 0.875rem);
-  --text-base: clamp(0.9375rem, 0.8875rem + 0.25vw, 1.0625rem);
-  --text-lg: clamp(1.125rem, 1.05rem + 0.35vw, 1.25rem);
-  --text-xl: clamp(1.25rem, 1.15rem + 0.5vw, 1.5rem);
-  --text-2xl: clamp(1.6rem, 1.4rem + 1vw, 2.125rem);
-  --text-3xl: clamp(2rem, 1.7rem + 1.5vw, 3rem);
-  --text-hero: clamp(2.75rem, 2.2rem + 3.5vw, 5.5rem);
+  --text-base: clamp(0.95rem, 0.9rem + 0.25vw, 1.08rem);
+  --text-lg: clamp(1.15rem, 1.05rem + 0.35vw, 1.3rem);
+  --text-xl: clamp(1.35rem, 1.2rem + 0.5vw, 1.65rem);
+  --text-2xl: clamp(1.8rem, 1.5rem + 1vw, 2.4rem);
+  --text-3xl: clamp(2.5rem, 2rem + 2vw, 4rem);
+  --text-giant: clamp(3.2rem, 2.5rem + 4.5vw, 6.5rem);
+  --text-mega: clamp(4.5rem, 3.5rem + 8vw, 11rem);
 
   /* Spacing */
   --space-1: 0.25rem;
@@ -69,62 +69,34 @@
   --space-3: 1rem;
   --space-4: 2rem;
   --space-5: 4rem;
-  --space-6: 8rem;
+  --space-6: 7rem;
+  --space-7: 10rem;
 
-  /* Layout and shapes */
-  --max-width: 1140px;
-  --header-h: 76px;
-  --radius: 4px;
+  /* Shapes & Layout */
+  --max-width: 1320px;
+  --header-h: 80px;
+  --radius-sm: 8px;
+  --radius-card: 20px;
+  --radius-panel: 24px;
   --radius-pill: 9999px;
 
-  /* Tactile Physics & Transitions (Paul Fey Deceleration & Spring) */
-  --ease-dec: cubic-bezier(0.23, 1, 0.32, 1);
+  /* Motion Physics (Super Eight signature smooth cubic-bezier) */
+  --ease-smooth: cubic-bezier(0.22, 1, 0.36, 1);
   --ease-spring: cubic-bezier(0.34, 1.45, 0.64, 1);
   --transition-fast: 180ms ease;
-  --transition-base: 320ms var(--ease-dec);
-  --transition-spring: 400ms var(--ease-spring);
+  --transition-base: 360ms var(--ease-smooth);
+  --transition-slow: 600ms var(--ease-smooth);
 }
 
-[data-theme="dark"] {
-  /* Paul Fey Blueprint Gatefold Dark Mode */
-  --bg: #121110;
-  --surface: #1B1A18;
-  --surface-alt: #23221F;
-  --ink: #F1E8D8;
-  --fg: #FFFFFF;
-  --muted: #9E978B;
-  --line: #2D2B26;
-
-  /* Accent overrides */
-  --accent: #FF6753;
-  --accent-hover: #FF7F6D;
-  --accent-2: #7AA2B8;
-  --accent-2-bg: #1A2830;
-  --accent-2-border: #2D424F;
-
-  /* Floating Capsule */
-  --pill-bg: #23221F;
-  --pill-ink: #F1E8D8;
-  --pill-muted: #9E978B;
-
-  /* Gatefold Case Study Drawer */
-  --gatefold-bg: #0A0A09;
-  --gatefold-surface: #161513;
-  --gatefold-ink: #F1E8D8;
-  --gatefold-muted: rgba(241, 232, 216, 0.6);
-  --gatefold-line: rgba(241, 232, 216, 0.14);
-
-  /* Badges */
-  --sticker-bg: #1E1D1A;
-  --sticker-border: #383630;
-  --sticker-shadow: rgba(0, 0, 0, 0.4);
-
-  /* Status overrides */
-  --success: #48BB78;
-  --success-bg: #12281D;
-  --error: #F56565;
-  --error-bg: #2C1515;
-  --focus-ring: rgba(255, 103, 83, 0.4);
-  --grid-line: rgba(241, 232, 216, 0.04);
-  --grid-dot: rgba(241, 232, 216, 0.08);
+[data-theme="light"] {
+  --bg: #F6F5F1;
+  --bg-light: #E7E5DF;
+  --surface: #FFFFFF;
+  --surface-alt: #E7E5DF;
+  --text-main: #131313;
+  --text-dark: #131313;
+  --muted: #6F6C66;
+  --muted-dark: #6F6C66;
+  --line: rgba(19, 19, 19, 0.12);
+  --line-strong: rgba(19, 19, 19, 0.22);
 }

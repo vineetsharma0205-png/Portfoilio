@@ -146,7 +146,8 @@ function init() {
   // 5. Footer
   const footerEl = renderFooter({
     footer: siteData.footer || {},
-    identity: siteData.identity
+    identity: siteData.identity,
+    contact: siteData.contact
   });
   app.appendChild(footerEl);
 

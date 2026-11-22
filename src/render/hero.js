@@ -1,6 +1,7 @@
 /**
- * Hero render module: Paul Fey inspired editorial title, Cormorant Garamond subtitle,
- * tactile die-cut sticker badges, and gatefold specification docket.
+ * Hero render module: Super Eight Studio exact hero architecture.
+ * Features live engineering status ticker, massive Big Shoulders headline,
+ * 3-column metadata strip, pill actions, and interactive showreel turntable card.
  */
 
 export function renderHero({ hero, identity }) {
@@ -11,108 +12,92 @@ export function renderHero({ hero, identity }) {
   const container = document.createElement('div');
   container.className = 'container';
 
-  // Metadata bar (engineer's notebook header)
-  const metaBar = document.createElement('div');
-  metaBar.className = 'hero-meta-bar';
-  metaBar.innerHTML = `
-    <span class="hero-coords font-mono">DWG-2027 // CATALOG SPEC SHEET</span>
-    <span class="font-mono">SYS_LOC: ${identity.location.toUpperCase()}</span>
+  // 1. Live Engineering Status Ticker Bar
+  const tickerBar = document.createElement('div');
+  tickerBar.className = 'hero-ticker-bar';
+  tickerBar.innerHTML = `
+    <span class="ticker-live-status">
+      <span class="ticker-pulse-dot" aria-hidden="true"></span>
+      <span>IIITDM KURNOOL // B.TECH MECHANICAL (2023-2027)</span>
+    </span>
+    <span>SYS_LOC: ${identity.location.toUpperCase()} · STATUS: AVAILABLE</span>
   `;
 
-  // Massive Display Title in Bricolage Grotesque
-  const title = document.createElement('h1');
-  title.className = 'hero-title';
-  title.textContent = identity.name;
+  // 2. Massive Headline in Big Shoulders Display 900
+  const headline = document.createElement('h1');
+  headline.className = 'hero-headline';
+  headline.innerHTML = `
+    MECHANICAL SYSTEMS DESIGNED <span class="hero-headline-accent">TO PERFORM.</span>
+  `;
 
-  // Editorial Cormorant subtitle
-  const descriptor = document.createElement('p');
-  descriptor.className = 'hero-descriptor font-serif';
-  descriptor.textContent = hero.descriptor;
+  // 3. 3-Column Metadata Information Grid Strip
+  const metaGrid = document.createElement('div');
+  metaGrid.className = 'hero-meta-grid';
 
-  // Tactile Die-Cut Badges / Sticker Cloud
-  const stickerCloud = document.createElement('div');
-  stickerCloud.className = 'sticker-cloud';
-
-  const badgeLabels = [
-    'IIITDM Kurnool \'27',
-    'IIT Roorkee Research',
-    'BAJA SAE Suspension',
-    'SolidWorks + ANSYS FEA'
+  const specs = hero.specs || [
+    { label: "Degree", value: "B.Tech Mechanical, 2023-2027" },
+    { label: "Location", value: "Hyderabad, India" },
+    { label: "Focus", value: "Suspension, FEA & Prototyping" }
   ];
 
-  badgeLabels.forEach((label) => {
-    const badge = document.createElement('span');
-    badge.className = 'sticker-badge';
-    badge.innerHTML = `<span class="sticker-dot" aria-hidden="true"></span><span>${label}</span>`;
-    stickerCloud.appendChild(badge);
+  specs.forEach((spec) => {
+    const col = document.createElement('div');
+    col.className = 'meta-col';
+    col.innerHTML = `
+      <span class="meta-label">${spec.label}</span>
+      <span class="meta-val font-serif">${spec.value}</span>
+    `;
+    metaGrid.appendChild(col);
   });
 
-  // CTA buttons
-  const ctaGroup = document.createElement('div');
-  ctaGroup.className = 'hero-cta-group';
+  // 4. Mission Statement & CTA Cluster
+  const bottomRow = document.createElement('div');
+  bottomRow.className = 'hero-bottom-row';
 
-  if (hero.primaryCta && hero.primaryCta.label) {
-    const primaryBtn = document.createElement('a');
-    primaryBtn.className = 'btn btn-primary';
-    primaryBtn.href = hero.primaryCta.href;
-    primaryBtn.innerHTML = `<span>${hero.primaryCta.label}</span><span aria-hidden="true">↓</span>`;
-    ctaGroup.appendChild(primaryBtn);
-  }
+  const descriptor = document.createElement('p');
+  descriptor.className = 'hero-descriptor font-sans';
+  descriptor.textContent = hero.descriptor;
 
-  if (hero.secondaryCta && hero.secondaryCta.label) {
-    const secondaryBtn = document.createElement('a');
-    secondaryBtn.className = 'btn btn-secondary';
-    secondaryBtn.href = hero.secondaryCta.href;
-    secondaryBtn.target = hero.secondaryCta.href.startsWith('http') || hero.secondaryCta.href.endsWith('.pdf') ? '_blank' : '_self';
-    if (secondaryBtn.target === '_blank') {
-      secondaryBtn.rel = 'noopener noreferrer';
-    }
-    secondaryBtn.innerHTML = `<span>${hero.secondaryCta.label}</span><span aria-hidden="true">↗</span>`;
-    ctaGroup.appendChild(secondaryBtn);
-  }
+  const ctaCluster = document.createElement('div');
+  ctaCluster.className = 'hero-cta-cluster';
 
-  // Spec Sheet Component
-  const specSheet = document.createElement('div');
-  specSheet.className = 'spec-sheet';
+  const primaryBtn = document.createElement('a');
+  primaryBtn.className = 'btn-primary-teal';
+  primaryBtn.href = '#projects';
+  primaryBtn.innerHTML = `<span>View selected work</span><span aria-hidden="true">↓</span>`;
 
-  const specHeader = document.createElement('div');
-  specHeader.className = 'spec-sheet-header';
-  specHeader.innerHTML = `
-    <span>Engineering Dossier Specifications</span>
-    <span class="font-mono">STATUS: ACTIVE // VERIFIED</span>
+  const secondaryBtn = document.createElement('a');
+  secondaryBtn.className = 'btn-secondary-outline';
+  secondaryBtn.href = hero.secondaryCta?.href || '/resume.pdf';
+  secondaryBtn.target = '_blank';
+  secondaryBtn.rel = 'noopener noreferrer';
+  secondaryBtn.innerHTML = `<span>Resume</span><span aria-hidden="true">↗</span>`;
+
+  ctaCluster.appendChild(primaryBtn);
+  ctaCluster.appendChild(secondaryBtn);
+  bottomRow.appendChild(descriptor);
+  bottomRow.appendChild(ctaCluster);
+
+  // 5. Featured Showreel / CAD Turntable Card
+  const showreelCard = document.createElement('div');
+  showreelCard.className = 'hero-showreel-card';
+  showreelCard.innerHTML = `
+    <img src="/images/baja-suspension.jpg" alt="BAJA SAE Off-Road Suspension Turntable CAD" class="hero-showreel-img" loading="eager">
+    <div class="hero-showreel-overlay">
+      <a href="#projects" class="showreel-play-btn" aria-label="Explore CAD Assembly">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+          <polygon points="5 3 19 12 5 21 5 3"/>
+        </svg>
+        <span class="showreel-btn-label">EXPLORE</span>
+      </a>
+    </div>
   `;
-  specSheet.appendChild(specHeader);
 
-  const table = document.createElement('table');
-  table.className = 'spec-table';
-  const tbody = document.createElement('tbody');
-
-  (hero.specs || []).forEach((spec) => {
-    const tr = document.createElement('tr');
-    tr.className = 'spec-row';
-
-    const tdLabel = document.createElement('td');
-    tdLabel.className = 'spec-label';
-    tdLabel.textContent = spec.label;
-
-    const tdVal = document.createElement('td');
-    tdVal.className = 'spec-val';
-    tdVal.textContent = spec.value;
-
-    tr.appendChild(tdLabel);
-    tr.appendChild(tdVal);
-    tbody.appendChild(tr);
-  });
-
-  table.appendChild(tbody);
-  specSheet.appendChild(table);
-
-  container.appendChild(metaBar);
-  container.appendChild(title);
-  container.appendChild(descriptor);
-  container.appendChild(stickerCloud);
-  container.appendChild(ctaGroup);
-  container.appendChild(specSheet);
+  container.appendChild(tickerBar);
+  container.appendChild(headline);
+  container.appendChild(metaGrid);
+  container.appendChild(bottomRow);
+  container.appendChild(showreelCard);
   section.appendChild(container);
 
   return section;

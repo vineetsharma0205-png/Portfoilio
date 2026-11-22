@@ -1,26 +1,31 @@
 /**
- * Header render module: Paul Fey inspired floating dark capsule navigation bar
- * with brand dot, active section links, theme toggle, and mobile menu.
+ * Header render module: Super Eight Studio morphing navigation bar.
+ * Features overlapping circle monogram mark, editorial navigation links,
+ * rounded pill CTA, and scroll-triggered compact floating capsule state.
  */
 
 export function renderHeader({ identity, sections = [] }) {
   const header = document.createElement('header');
   header.className = 'site-header';
+  header.id = 'site-header';
 
-  const capsule = document.createElement('div');
-  capsule.className = 'nav-capsule';
+  const inner = document.createElement('div');
+  inner.className = 'header-inner';
 
-  // Brand link / Monogram
+  // Brand link with Super Eight overlapping circles
   const brandLink = document.createElement('a');
   brandLink.className = 'brand-link';
   brandLink.href = '#';
   brandLink.setAttribute('aria-label', `${identity.name} - Home`);
   brandLink.innerHTML = `
-    <span class="brand-dot" aria-hidden="true"></span>
+    <span class="brand-circles" aria-hidden="true">
+      <span class="brand-circle-1"></span>
+      <span class="brand-circle-2"></span>
+    </span>
     <span>${identity.name}</span>
   `;
 
-  // Navigation menu
+  // Center navigation menu
   const nav = document.createElement('nav');
   nav.className = 'site-nav';
   nav.setAttribute('aria-label', 'Primary');
@@ -28,8 +33,8 @@ export function renderHeader({ identity, sections = [] }) {
   const sectionLabels = {
     about: 'About',
     experience: 'Experience',
-    projects: 'Dossiers',
-    skills: 'Specs',
+    projects: 'Work',
+    skills: 'Services',
     certifications: 'Certs',
     contact: 'Contact'
   };
@@ -41,6 +46,16 @@ export function renderHeader({ identity, sections = [] }) {
     link.textContent = sectionLabels[secId] || secId;
     nav.appendChild(link);
   });
+
+  // Right action cluster
+  const actions = document.createElement('div');
+  actions.className = 'header-actions';
+
+  // Pill CTA
+  const pillCta = document.createElement('a');
+  pillCta.className = 'btn-pill-cta';
+  pillCta.href = '#contact';
+  pillCta.innerHTML = `<span>Get in touch</span><span aria-hidden="true">↗</span>`;
 
   // Theme toggle button
   const themeToggle = document.createElement('button');
@@ -64,7 +79,6 @@ export function renderHeader({ identity, sections = [] }) {
     menuToggle.textContent = isOpen ? '[ Close ]' : '[ Menu ]';
   });
 
-  // Close menu on nav item click
   nav.addEventListener('click', (e) => {
     if (e.target.matches('.nav-link')) {
       nav.classList.remove('is-open');
@@ -73,11 +87,23 @@ export function renderHeader({ identity, sections = [] }) {
     }
   });
 
-  capsule.appendChild(brandLink);
-  capsule.appendChild(nav);
-  capsule.appendChild(themeToggle);
-  capsule.appendChild(menuToggle);
-  header.appendChild(capsule);
+  actions.appendChild(pillCta);
+  actions.appendChild(themeToggle);
+  actions.appendChild(menuToggle);
+
+  inner.appendChild(brandLink);
+  inner.appendChild(nav);
+  inner.appendChild(actions);
+  header.appendChild(inner);
+
+  // Scroll morphing: becomes compact floating capsule on scroll
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 40) {
+      header.classList.add('is-compact');
+    } else {
+      header.classList.remove('is-compact');
+    }
+  }, { passive: true });
 
   return header;
 }

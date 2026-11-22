@@ -1,6 +1,6 @@
 /**
- * Skills render module: labeled two-column specification lists.
- * Strictly no percentage rings or progress bars.
+ * Skills render module: Super Eight Studio exact 2x2 Services Grid.
+ * Partitioned by hairline dividers with tracked numbers and pill chips.
  */
 
 export function renderSkills(skillsList, indexString = '04') {
@@ -11,49 +11,32 @@ export function renderSkills(skillsList, indexString = '04') {
   const container = document.createElement('div');
   container.className = 'container';
 
-  // Section header
+  // Section Header
   const header = document.createElement('header');
   header.className = 'section-header';
   header.innerHTML = `
-    <span class="section-tag">${indexString} / Skills</span>
-    <h2 class="section-title">Technical Competencies & Tools</h2>
+    <div class="section-eyebrow">${indexString} / SERVICES & CAPABILITIES</div>
+    <h2 class="section-serif-title font-serif">Engineering Competencies & Tools</h2>
   `;
 
   const grid = document.createElement('div');
-  grid.className = 'skills-grid';
+  grid.className = 'skills-s8-grid';
 
-  (skillsList || []).forEach((groupObj, groupIdx) => {
-    const card = document.createElement('div');
-    card.className = 'skill-spec-card';
+  (skillsList || []).forEach((groupObj, idx) => {
+    const cell = document.createElement('div');
+    cell.className = 'skill-s8-cell';
 
-    const groupHeader = document.createElement('div');
-    groupHeader.className = 'skill-group-name';
-    groupHeader.textContent = `[ ${groupObj.group} ]`;
-    card.appendChild(groupHeader);
+    const indexNum = String(idx + 1).padStart(2, '0');
 
-    const table = document.createElement('table');
-    table.className = 'skill-spec-table';
-    const tbody = document.createElement('tbody');
+    cell.innerHTML = `
+      <div class="skill-cell-num font-mono">${indexNum} // SPECIALITY</div>
+      <h3 class="skill-cell-heading">${groupObj.group}</h3>
+      <div class="skill-pills-wrap font-sans">
+        ${(groupObj.items || []).map(item => `<span class="skill-pill">${item}</span>`).join('')}
+      </div>
+    `;
 
-    (groupObj.items || []).forEach((item, itemIdx) => {
-      const tr = document.createElement('tr');
-
-      const tdIndex = document.createElement('td');
-      tdIndex.className = 'skill-item-index';
-      tdIndex.textContent = String(itemIdx + 1).padStart(2, '0');
-
-      const tdName = document.createElement('td');
-      tdName.className = 'skill-item-name font-mono';
-      tdName.textContent = item;
-
-      tr.appendChild(tdIndex);
-      tr.appendChild(tdName);
-      tbody.appendChild(tr);
-    });
-
-    table.appendChild(tbody);
-    card.appendChild(table);
-    grid.appendChild(card);
+    grid.appendChild(cell);
   });
 
   container.appendChild(header);
