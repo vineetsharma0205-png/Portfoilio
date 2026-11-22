@@ -1,36 +1,57 @@
 /* =========================================================================
    Change colors and fonts here.
    Single source of truth for design tokens, typography, spacing, and theming.
+   Inspired by Paul Fey's award-winning editorial & tactile design system.
    ========================================================================= */
 
 :root {
-  /* Surface and ink palette (Warm paper engineering spec sheet) */
-  --bg: #F3F0E8;
-  --surface: #FBF9F4;
-  --surface-alt: #EBE7DD;
-  --ink: #181817;
-  --muted: #6B6860;
-  --line: #D8D3C6;
+  /* Surface and ink palette (Paul Fey Warm Paper & Editorial Canvas) */
+  --bg: #F4F2ED;
+  --surface: #FAF6ED;
+  --surface-alt: #EAE4D6;
+  --ink: #151515;
+  --fg: #000000;
+  --muted: #68645D;
+  --line: #DCD5C5;
 
-  /* Accent colors */
-  --accent: #C8471B;         /* safety orange: links, key numbers, active states only */
-  --accent-hover: #AB3B15;
-  --accent-2: #2F4858;       /* deep slate: tags, secondary emphasis */
-  --accent-2-bg: #E3E9ED;
-  --accent-2-border: #BBCAD2;
+  /* Paul Fey Signature Accent Palette */
+  --accent: #FF5A45;         /* Electric tomato red: primary focal accent, active states */
+  --accent-hover: #E64732;
+  --accent-2: #274862;       /* Deep blueprint slate: secondary tags, engineering specs */
+  --accent-2-bg: #E2E9EF;
+  --accent-2-border: #BACBD8;
+
+  /* Floating Dark Capsule Navigation */
+  --pill-bg: #151515;
+  --pill-ink: #FAF6ED;
+  --pill-muted: #8E8A82;
+
+  /* Gatefold Case Study Blueprint Drawer */
+  --gatefold-bg: #121110;
+  --gatefold-surface: #1C1B18;
+  --gatefold-ink: #F1E8D8;
+  --gatefold-muted: rgba(241, 232, 216, 0.65);
+  --gatefold-line: rgba(241, 232, 216, 0.16);
+
+  /* Tactile Die-Cut Badges & Stickers */
+  --sticker-bg: #FFFFFF;
+  --sticker-border: #151515;
+  --sticker-shadow: rgba(21, 21, 21, 0.12);
 
   /* Status and feedback colors */
   --success: #1E6B37;
   --success-bg: #E8F5EC;
   --error: #B82828;
   --error-bg: #FDF0F0;
-  --focus-ring: rgba(200, 71, 27, 0.35);
-  --grid-line: rgba(24, 24, 23, 0.06);
-  --grid-dot: rgba(24, 24, 23, 0.12);
+  --focus-ring: rgba(255, 90, 69, 0.4);
+  --grid-line: rgba(21, 21, 21, 0.06);
+  --grid-dot: rgba(21, 21, 21, 0.12);
 
-  /* Typography */
+  /* Typography System */
+  --font-display: "Bricolage Grotesque", system-ui, -apple-system, sans-serif;
+  --font-serif: "Cormorant Garamond", Georgia, serif;
+  --font-mono: "JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
   --font-body: "Archivo", system-ui, -apple-system, sans-serif;
-  --font-mono: "IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
 
   /* Fluid type scale using clamp() */
   --text-xs: clamp(0.72rem, 0.68rem + 0.2vw, 0.8rem);
@@ -38,9 +59,9 @@
   --text-base: clamp(0.9375rem, 0.8875rem + 0.25vw, 1.0625rem);
   --text-lg: clamp(1.125rem, 1.05rem + 0.35vw, 1.25rem);
   --text-xl: clamp(1.25rem, 1.15rem + 0.5vw, 1.5rem);
-  --text-2xl: clamp(1.5rem, 1.35rem + 0.75vw, 1.875rem);
-  --text-3xl: clamp(1.875rem, 1.6rem + 1.25vw, 2.5rem);
-  --text-hero: clamp(2.25rem, 1.85rem + 2vw, 3.75rem);
+  --text-2xl: clamp(1.6rem, 1.4rem + 1vw, 2.125rem);
+  --text-3xl: clamp(2rem, 1.7rem + 1.5vw, 3rem);
+  --text-hero: clamp(2.75rem, 2.2rem + 3.5vw, 5.5rem);
 
   /* Spacing */
   --space-1: 0.25rem;
@@ -51,37 +72,59 @@
   --space-6: 8rem;
 
   /* Layout and shapes */
-  --max-width: 1120px;
-  --header-h: 64px;
-  --radius: 3px;
+  --max-width: 1140px;
+  --header-h: 76px;
+  --radius: 4px;
+  --radius-pill: 9999px;
 
-  /* Motion */
-  --transition-fast: 150ms ease;
-  --transition-base: 250ms ease;
+  /* Tactile Physics & Transitions (Paul Fey Deceleration & Spring) */
+  --ease-dec: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-spring: cubic-bezier(0.34, 1.45, 0.64, 1);
+  --transition-fast: 180ms ease;
+  --transition-base: 320ms var(--ease-dec);
+  --transition-spring: 400ms var(--ease-spring);
 }
 
 [data-theme="dark"] {
-  /* Blueprint dark theme */
-  --bg: #131312;
-  --surface: #1B1B19;
-  --surface-alt: #22221F;
-  --ink: #ECE8DF;
-  --muted: #9A968B;
-  --line: #2E2D2A;
+  /* Paul Fey Blueprint Gatefold Dark Mode */
+  --bg: #121110;
+  --surface: #1B1A18;
+  --surface-alt: #23221F;
+  --ink: #F1E8D8;
+  --fg: #FFFFFF;
+  --muted: #9E978B;
+  --line: #2D2B26;
 
   /* Accent overrides */
-  --accent: #E0612F;
-  --accent-hover: #F27848;
+  --accent: #FF6753;
+  --accent-hover: #FF7F6D;
   --accent-2: #7AA2B8;
   --accent-2-bg: #1A2830;
-  --accent-2-border: #2C424E;
+  --accent-2-border: #2D424F;
+
+  /* Floating Capsule */
+  --pill-bg: #23221F;
+  --pill-ink: #F1E8D8;
+  --pill-muted: #9E978B;
+
+  /* Gatefold Case Study Drawer */
+  --gatefold-bg: #0A0A09;
+  --gatefold-surface: #161513;
+  --gatefold-ink: #F1E8D8;
+  --gatefold-muted: rgba(241, 232, 216, 0.6);
+  --gatefold-line: rgba(241, 232, 216, 0.14);
+
+  /* Badges */
+  --sticker-bg: #1E1D1A;
+  --sticker-border: #383630;
+  --sticker-shadow: rgba(0, 0, 0, 0.4);
 
   /* Status overrides */
   --success: #48BB78;
   --success-bg: #12281D;
   --error: #F56565;
   --error-bg: #2C1515;
-  --focus-ring: rgba(224, 97, 47, 0.4);
-  --grid-line: rgba(236, 232, 223, 0.05);
-  --grid-dot: rgba(236, 232, 223, 0.1);
+  --focus-ring: rgba(255, 103, 83, 0.4);
+  --grid-line: rgba(241, 232, 216, 0.04);
+  --grid-dot: rgba(241, 232, 216, 0.08);
 }

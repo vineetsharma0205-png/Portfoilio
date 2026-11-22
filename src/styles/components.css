@@ -1,96 +1,104 @@
 /* =========================================================================
-   components.css: Engineering notebook components.
+   components.css: Paul Fey inspired editorial & tactile engineering components.
    Zero raw hex codes. All colors, spacing, and typography use CSS variables.
    ========================================================================= */
 
 /* -------------------------------------------------------------------------
-   Header & Navigation
+   Floating Dark Capsule Navigation Bar (Paul Fey Signature Nav)
    ------------------------------------------------------------------------- */
 .site-header {
   position: sticky;
   top: 0;
-  z-index: 100;
+  z-index: 200;
   width: 100%;
-  height: var(--header-h);
-  background-color: var(--bg);
-  border-bottom: 1px solid var(--line);
-  transition: background-color var(--transition-fast), border-color var(--transition-fast);
+  padding-top: var(--space-2);
+  padding-bottom: var(--space-2);
+  display: flex;
+  justify-content: center;
+  pointer-events: none;
 }
 
-.header-inner {
-  display: flex;
+.nav-capsule {
+  pointer-events: auto;
+  display: inline-flex;
   align-items: center;
   justify-content: space-between;
-  height: 100%;
+  background-color: var(--pill-bg);
+  color: var(--pill-ink);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-pill);
+  padding: 0.35rem 0.6rem 0.35rem 1.15rem;
+  box-shadow: 0 10px 30px var(--sticker-shadow);
+  gap: var(--space-3);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  max-width: calc(100% - 2rem);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
 }
 
 .brand-link {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: var(--space-2);
-  font-family: var(--font-mono);
+  font-family: var(--font-display);
+  font-weight: 700;
   font-size: var(--text-sm);
-  font-weight: 600;
+  color: var(--pill-ink);
   letter-spacing: -0.01em;
-  color: var(--ink);
+  white-space: nowrap;
 }
 
-.brand-mark {
-  display: inline-block;
-  width: 8px;
-  height: 8px;
+.brand-dot {
+  width: 7px;
+  height: 7px;
   background-color: var(--accent);
-  border-radius: var(--radius);
-}
-
-.nav-cluster {
-  display: flex;
-  align-items: center;
-  gap: var(--space-3);
+  border-radius: var(--radius-pill);
+  display: inline-block;
+  box-shadow: 0 0 8px var(--accent);
 }
 
 .site-nav {
   display: flex;
   align-items: center;
-  gap: var(--space-3);
+  gap: var(--space-1);
 }
 
 .nav-link {
   font-family: var(--font-mono);
   font-size: var(--text-xs);
   text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: var(--muted);
-  padding: var(--space-1) var(--space-2);
-  border-radius: var(--radius);
+  letter-spacing: 0.06em;
+  color: var(--pill-muted);
+  padding: 0.3rem 0.65rem;
+  border-radius: var(--radius-pill);
   position: relative;
-  transition: color var(--transition-fast);
+  transition: color var(--transition-fast), background-color var(--transition-fast);
+  white-space: nowrap;
 }
 
-.nav-link:hover,
+.nav-link:hover {
+  color: var(--pill-ink);
+}
+
 .nav-link.is-active {
-  color: var(--accent);
+  color: var(--pill-ink);
+  background-color: var(--surface-alt);
+  font-weight: 600;
 }
 
-.nav-link.is-active::after {
-  content: "";
-  position: absolute;
-  bottom: -4px;
-  left: var(--space-2);
-  right: var(--space-2);
-  height: 2px;
-  background-color: var(--accent);
+[data-theme="dark"] .nav-link.is-active {
+  background-color: var(--line);
 }
 
 .theme-toggle {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background: transparent;
+  background-color: var(--surface-alt);
   border: 1px solid var(--line);
   color: var(--ink);
-  padding: var(--space-1) var(--space-2);
-  border-radius: var(--radius);
+  padding: 0.25rem 0.6rem;
+  border-radius: var(--radius-pill);
   cursor: pointer;
   font-family: var(--font-mono);
   font-size: var(--text-xs);
@@ -102,38 +110,37 @@
   color: var(--accent);
 }
 
-/* Mobile menu toggle */
 .menu-toggle {
   display: none;
   background: transparent;
-  border: 1px solid var(--line);
-  color: var(--ink);
+  border: none;
+  color: var(--pill-ink);
   padding: var(--space-1) var(--space-2);
-  border-radius: var(--radius);
   cursor: pointer;
   font-family: var(--font-mono);
   font-size: var(--text-xs);
 }
 
-@media (max-width: 899px) {
+@media (max-width: 860px) {
   .menu-toggle {
     display: inline-flex;
-    align-items: center;
   }
 
   .site-nav {
     display: none;
-    position: absolute;
-    top: var(--header-h);
-    left: 0;
-    width: 100%;
-    background-color: var(--surface);
-    border-bottom: 1px solid var(--line);
-    flex-direction: column;
-    align-items: flex-start;
+    position: fixed;
+    top: calc(var(--header-h) + var(--space-2));
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(100% - 2rem);
+    max-width: 400px;
+    background-color: var(--pill-bg);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
     padding: var(--space-3);
+    flex-direction: column;
     gap: var(--space-2);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 16px 36px var(--sticker-shadow);
   }
 
   .site-nav.is-open {
@@ -143,20 +150,12 @@
   .nav-link {
     width: 100%;
     padding: var(--space-2);
-  }
-
-  .nav-link.is-active::after {
-    left: 0;
-    right: auto;
-    width: 3px;
-    height: 100%;
-    top: 0;
-    bottom: 0;
+    border-radius: var(--radius);
   }
 }
 
 /* -------------------------------------------------------------------------
-   Section Scaffolding & 1px Technical Dividers
+   Section Wrapper & Editorial Headers
    ------------------------------------------------------------------------- */
 .section-wrapper {
   padding-top: var(--space-5);
@@ -177,31 +176,29 @@
   display: inline-block;
   font-family: var(--font-mono);
   font-size: var(--text-xs);
-  font-weight: 500;
+  font-weight: 600;
   color: var(--accent);
   text-transform: uppercase;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.1em;
   margin-bottom: var(--space-1);
 }
 
 .section-title {
-  font-size: var(--text-2xl);
-  font-weight: 600;
-  letter-spacing: -0.02em;
+  font-family: var(--font-display);
+  font-size: var(--text-3xl);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
 }
 
 /* -------------------------------------------------------------------------
-   Hero Section
+   Hero Section (Editorial Paul Fey Style)
    ------------------------------------------------------------------------- */
 .hero-section {
-  padding-top: var(--space-5);
+  padding-top: var(--space-4);
   padding-bottom: var(--space-5);
   border-bottom: 1px solid var(--line);
   position: relative;
-  background-image: 
-    linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
-    linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
-  background-size: 24px 24px;
 }
 
 .hero-meta-bar {
@@ -213,29 +210,74 @@
   font-size: var(--text-xs);
   color: var(--muted);
   border-bottom: 1px dashed var(--line);
-  padding-bottom: var(--space-1);
-}
-
-.hero-coords {
-  letter-spacing: 0.05em;
+  padding-bottom: var(--space-2);
 }
 
 .hero-title {
+  font-family: var(--font-display);
   font-size: var(--text-hero);
-  font-weight: 700;
-  line-height: 1.1;
-  letter-spacing: -0.03em;
+  font-weight: 800;
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+  text-transform: uppercase;
   margin-bottom: var(--space-3);
 }
 
 .hero-descriptor {
-  font-size: var(--text-lg);
-  line-height: 1.5;
+  font-family: var(--font-serif);
+  font-size: var(--text-xl);
+  font-style: italic;
+  line-height: 1.4;
   color: var(--ink);
-  max-width: 48ch;
+  max-width: 44ch;
   margin-bottom: var(--space-4);
 }
 
+/* Tactile Die-Cut Badges / Sticker Cloud */
+.sticker-cloud {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-bottom: var(--space-4);
+}
+
+.sticker-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  padding: 0.35rem 0.8rem;
+  background-color: var(--sticker-bg);
+  border: 1.5px solid var(--sticker-border);
+  border-radius: var(--radius-pill);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  color: var(--ink);
+  box-shadow: 0 4px 10px var(--sticker-shadow);
+  transition: transform var(--transition-spring), box-shadow var(--transition-fast);
+  cursor: default;
+  user-select: none;
+}
+
+.sticker-badge:nth-child(1) { transform: rotate(-1.5deg); }
+.sticker-badge:nth-child(2) { transform: rotate(1.2deg); }
+.sticker-badge:nth-child(3) { transform: rotate(-0.8deg); }
+.sticker-badge:nth-child(4) { transform: rotate(1.8deg); }
+
+.sticker-badge:hover {
+  transform: translateY(-3px) scale(1.05) rotate(0deg);
+  box-shadow: 0 8px 16px var(--sticker-shadow);
+  border-color: var(--accent);
+}
+
+.sticker-dot {
+  width: 6px;
+  height: 6px;
+  background-color: var(--accent);
+  border-radius: var(--radius-pill);
+}
+
+/* CTA Group */
 .hero-cta-group {
   display: flex;
   flex-wrap: wrap;
@@ -248,14 +290,14 @@
   align-items: center;
   justify-content: center;
   gap: var(--space-2);
-  padding: 0.65rem 1.25rem;
-  border-radius: var(--radius);
+  padding: 0.75rem 1.4rem;
+  border-radius: var(--radius-pill);
   font-family: var(--font-mono);
   font-size: var(--text-sm);
-  font-weight: 500;
+  font-weight: 600;
   letter-spacing: 0.02em;
   cursor: pointer;
-  transition: background-color var(--transition-fast), color var(--transition-fast), border-color var(--transition-fast);
+  transition: background-color var(--transition-fast), color var(--transition-fast), transform var(--transition-fast), border-color var(--transition-fast);
 }
 
 .btn-primary {
@@ -267,7 +309,7 @@
 .btn-primary:hover {
   background-color: var(--accent-hover);
   border-color: var(--accent-hover);
-  color: var(--surface);
+  transform: translateY(-2px);
 }
 
 .btn-secondary {
@@ -278,15 +320,16 @@
 
 .btn-secondary:hover {
   border-color: var(--ink);
-  color: var(--ink);
+  transform: translateY(-2px);
 }
 
-/* Spec Sheet Component */
+/* Spec Sheet Docket Component */
 .spec-sheet {
   background-color: var(--surface);
   border: 1px solid var(--line);
   border-radius: var(--radius);
   overflow: hidden;
+  box-shadow: 0 6px 20px var(--sticker-shadow);
 }
 
 .spec-sheet-header {
@@ -297,7 +340,7 @@
   font-size: var(--text-xs);
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.06em;
   color: var(--muted);
   display: flex;
   align-items: center;
@@ -377,12 +420,18 @@
   padding: var(--space-3);
   display: flex;
   flex-direction: column;
+  transition: transform var(--transition-fast), border-color var(--transition-fast);
+}
+
+.metric-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--accent);
 }
 
 .metric-value {
-  font-family: var(--font-mono);
+  font-family: var(--font-display);
   font-size: var(--text-3xl);
-  font-weight: 700;
+  font-weight: 800;
   line-height: 1;
   color: var(--accent);
   margin-bottom: var(--space-1);
@@ -403,7 +452,7 @@
 }
 
 /* -------------------------------------------------------------------------
-   Experience Section
+   Experience Section (Editorial Timeline)
    ------------------------------------------------------------------------- */
 .timeline {
   display: flex;
@@ -416,6 +465,7 @@
   border: 1px solid var(--line);
   border-radius: var(--radius);
   padding: var(--space-4);
+  box-shadow: 0 4px 16px var(--sticker-shadow);
 }
 
 .timeline-header {
@@ -430,8 +480,9 @@
 }
 
 .timeline-role {
-  font-size: var(--text-lg);
-  font-weight: 600;
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  font-weight: 700;
   color: var(--ink);
 }
 
@@ -469,6 +520,15 @@
   font-family: var(--font-mono);
 }
 
+.timeline-card img {
+  width: 100%;
+  height: 240px;
+  object-fit: cover;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background-color: var(--surface-alt);
+}
+
 /* -------------------------------------------------------------------------
    Dashed Image Placeholder Box (Technical Blueprint Style)
    ------------------------------------------------------------------------- */
@@ -488,8 +548,8 @@
 }
 
 .placeholder-icon {
-  width: 20px;
-  height: 20px;
+  width: 22px;
+  height: 22px;
   color: var(--muted);
   opacity: 0.7;
 }
@@ -500,19 +560,8 @@
   color: var(--muted);
 }
 
-.project-card-body img,
-.compact-expanded-body img,
-.timeline-card img {
-  width: 100%;
-  height: 220px;
-  object-fit: cover;
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  background-color: var(--surface-alt);
-}
-
 /* -------------------------------------------------------------------------
-   Projects Section
+   Projects Section (The Blueprint Crate & Dossier Cards)
    ------------------------------------------------------------------------- */
 .projects-container {
   display: flex;
@@ -534,16 +583,19 @@
 
 .project-card {
   background-color: var(--surface);
-  border: 1px solid var(--line);
+  border: 1.5px solid var(--line);
   border-radius: var(--radius);
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  transition: border-color var(--transition-fast);
+  box-shadow: 0 6px 20px var(--sticker-shadow);
+  transition: transform var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast);
 }
 
 .project-card:hover {
-  border-color: var(--ink);
+  transform: translateY(-4px);
+  border-color: var(--accent);
+  box-shadow: 0 12px 28px var(--sticker-shadow);
 }
 
 .project-card-header {
@@ -555,9 +607,18 @@
   background-color: var(--surface-alt);
 }
 
-.project-card-title {
-  font-size: var(--text-base);
+.project-dossier-id {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
   font-weight: 600;
+  color: var(--accent);
+  letter-spacing: 0.05em;
+}
+
+.project-card-title {
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  font-weight: 700;
 }
 
 .project-date {
@@ -572,6 +633,20 @@
   flex-direction: column;
   gap: var(--space-3);
   flex: 1;
+}
+
+.project-card-body img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background-color: var(--surface-alt);
+  transition: transform var(--transition-base);
+}
+
+.project-card:hover .project-card-body img {
+  transform: scale(1.02);
 }
 
 .project-summary {
@@ -619,33 +694,55 @@
   background-color: var(--accent-2-bg);
   color: var(--accent-2);
   border: 1px solid var(--accent-2-border);
-  border-radius: var(--radius);
+  border-radius: var(--radius-pill);
 }
 
-.project-link-action {
-  font-family: var(--font-mono);
-  font-size: var(--text-xs);
-  color: var(--accent);
+/* Dossier Blueprint Drawer Trigger Button */
+.btn-open-dossier {
   display: inline-flex;
   align-items: center;
-  gap: var(--space-1);
+  justify-content: space-between;
+  width: 100%;
+  padding: 0.65rem 0.85rem;
+  background-color: var(--pill-bg);
+  color: var(--pill-ink);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  cursor: pointer;
   margin-top: var(--space-2);
+  transition: background-color var(--transition-fast), transform var(--transition-fast);
 }
 
-.project-link-action:hover {
-  text-decoration: underline;
+.btn-open-dossier:hover {
+  background-color: var(--accent);
+  color: var(--surface);
+  transform: translateY(-1px);
+}
+
+.btn-open-dossier-arrow {
+  color: var(--accent);
+  font-size: var(--text-sm);
+  transition: transform var(--transition-fast);
+}
+
+.btn-open-dossier:hover .btn-open-dossier-arrow {
+  color: var(--surface);
+  transform: translateX(3px);
 }
 
 /* Compact Projects List */
 .compact-projects-section {
-  margin-top: var(--space-3);
+  margin-top: var(--space-4);
 }
 
 .compact-projects-heading {
   font-family: var(--font-mono);
   font-size: var(--text-xs);
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.08em;
   color: var(--muted);
   margin-bottom: var(--space-2);
 }
@@ -660,6 +757,7 @@
   background-color: var(--surface);
   border: 1px solid var(--line);
   border-radius: var(--radius);
+  box-shadow: 0 2px 8px var(--sticker-shadow);
 }
 
 .compact-summary {
@@ -670,7 +768,6 @@
   align-items: center;
   list-style: none;
   user-select: none;
-  font-family: var(--font-body);
 }
 
 .compact-summary::-webkit-details-marker {
@@ -684,8 +781,9 @@
 }
 
 .compact-title {
-  font-size: var(--text-sm);
-  font-weight: 600;
+  font-family: var(--font-display);
+  font-size: var(--text-base);
+  font-weight: 700;
   color: var(--ink);
 }
 
@@ -728,6 +826,211 @@ details[open] .compact-indicator {
   gap: var(--space-3);
 }
 
+.compact-expanded-body img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background-color: var(--surface-alt);
+}
+
+/* -------------------------------------------------------------------------
+   Interactive Gatefold Blueprint Drawer (Case Study Modal)
+   ------------------------------------------------------------------------- */
+.blueprint-drawer-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(18, 17, 16, 0.7);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 999;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--transition-base);
+}
+
+.blueprint-drawer-backdrop.is-open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.blueprint-drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100%;
+  max-width: 840px;
+  height: 100vh;
+  background-color: var(--gatefold-bg);
+  color: var(--gatefold-ink);
+  border-left: 1px solid var(--gatefold-line);
+  z-index: 1000;
+  box-shadow: -16px 0 48px rgba(0, 0, 0, 0.5);
+  transform: translateX(100%);
+  transition: transform 420ms var(--ease-dec);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.blueprint-drawer.is-open {
+  transform: translateX(0);
+}
+
+.drawer-header {
+  padding: var(--space-3) var(--space-4);
+  background-color: var(--gatefold-surface);
+  border-bottom: 1px solid var(--gatefold-line);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.drawer-header-meta {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--accent);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.btn-close-drawer {
+  background-color: transparent;
+  border: 1px solid var(--gatefold-line);
+  color: var(--gatefold-ink);
+  padding: 0.35rem 0.8rem;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  cursor: pointer;
+  transition: border-color var(--transition-fast), color var(--transition-fast);
+}
+
+.btn-close-drawer:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.drawer-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--space-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.drawer-title {
+  font-family: var(--font-display);
+  font-size: var(--text-3xl);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+  color: var(--gatefold-ink);
+}
+
+.drawer-visual-wrapper {
+  border: 1px solid var(--gatefold-line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  background-color: var(--gatefold-surface);
+}
+
+.drawer-visual-wrapper img {
+  width: 100%;
+  max-height: 420px;
+  object-fit: cover;
+}
+
+.drawer-liner-notes {
+  background-color: var(--gatefold-surface);
+  border: 1px solid var(--gatefold-line);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.drawer-liner-title {
+  padding: var(--space-2) var(--space-3);
+  background-color: rgba(241, 232, 216, 0.04);
+  border-bottom: 1px solid var(--gatefold-line);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+}
+
+.drawer-liner-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.drawer-liner-table tr {
+  border-bottom: 1px solid var(--gatefold-line);
+}
+
+.drawer-liner-table tr:last-child {
+  border-bottom: none;
+}
+
+.drawer-liner-key {
+  padding: var(--space-2) var(--space-3);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--gatefold-muted);
+  width: 32%;
+  border-right: 1px solid var(--gatefold-line);
+  text-transform: uppercase;
+}
+
+.drawer-liner-val {
+  padding: var(--space-2) var(--space-3);
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  color: var(--gatefold-ink);
+}
+
+.drawer-chapters-title {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--gatefold-ink);
+  margin-top: var(--space-2);
+}
+
+.drawer-chapter-item {
+  background-color: var(--gatefold-surface);
+  border: 1px solid var(--gatefold-line);
+  border-radius: var(--radius);
+  padding: var(--space-3);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.drawer-chapter-header {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-2);
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.drawer-chapter-body {
+  font-size: var(--text-sm);
+  line-height: 1.6;
+  color: var(--gatefold-muted);
+}
+
 /* -------------------------------------------------------------------------
    Skills Section (Labeled Two-Column Specification Lists)
    ------------------------------------------------------------------------- */
@@ -748,6 +1051,7 @@ details[open] .compact-indicator {
   border: 1px solid var(--line);
   border-radius: var(--radius);
   overflow: hidden;
+  box-shadow: 0 4px 12px var(--sticker-shadow);
 }
 
 .skill-group-name {
@@ -758,7 +1062,7 @@ details[open] .compact-indicator {
   font-size: var(--text-xs);
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.08em;
   color: var(--muted);
 }
 
@@ -813,11 +1117,19 @@ details[open] .compact-indicator {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  box-shadow: 0 4px 12px var(--sticker-shadow);
+  transition: transform var(--transition-fast), border-color var(--transition-fast);
+}
+
+.cert-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--accent);
 }
 
 .cert-title {
-  font-size: var(--text-sm);
-  font-weight: 600;
+  font-family: var(--font-display);
+  font-size: var(--text-base);
+  font-weight: 700;
   color: var(--ink);
   margin-bottom: var(--space-2);
 }
@@ -893,6 +1205,7 @@ details[open] .compact-indicator {
   border: 1px solid var(--line);
   border-radius: var(--radius);
   padding: var(--space-4);
+  box-shadow: 0 6px 20px var(--sticker-shadow);
 }
 
 .contact-form {
@@ -927,14 +1240,14 @@ details[open] .compact-indicator {
 .form-input,
 .form-textarea {
   width: 100%;
-  padding: 0.65rem 0.75rem;
+  padding: 0.75rem 0.85rem;
   background-color: var(--bg);
   border: 1px solid var(--line);
   border-radius: var(--radius);
   color: var(--ink);
   font-family: var(--font-body);
   font-size: var(--text-sm);
-  transition: border-color var(--transition-fast), outline-color var(--transition-fast);
+  transition: border-color var(--transition-fast);
 }
 
 .form-textarea {
@@ -948,7 +1261,6 @@ details[open] .compact-indicator {
   border-color: var(--accent);
 }
 
-/* Honeypot field: strictly hidden from sighted users */
 .form-hp {
   position: absolute;
   width: 1px;
@@ -961,7 +1273,6 @@ details[open] .compact-indicator {
   border: 0;
 }
 
-/* Inline feedback messages */
 .form-status {
   padding: var(--space-2) var(--space-3);
   border-radius: var(--radius);

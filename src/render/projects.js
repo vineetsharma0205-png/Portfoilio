@@ -1,7 +1,10 @@
 /**
- * Projects render module: asymmetric display separating featured flagship projects
- * from compact expandable specification disclosures.
+ * Projects render module: Paul Fey inspired Blueprint Crate & Dossier Cards.
+ * Features catalog references (DWG-001..), CAD previews, and interactive
+ * Gatefold Blueprint Drawer inspection.
  */
+
+import { openBlueprintDrawer } from './drawer.js';
 
 export function renderProjects(projectsList, indexString = '03') {
   const section = document.createElement('section');
@@ -15,8 +18,8 @@ export function renderProjects(projectsList, indexString = '03') {
   const header = document.createElement('header');
   header.className = 'section-header';
   header.innerHTML = `
-    <span class="section-tag">${indexString} / Projects</span>
-    <h2 class="section-title">Design, CAD & Analysis Systems</h2>
+    <span class="section-tag">${indexString} / Dossiers</span>
+    <h2 class="section-title">Design, CAD & Analysis Archives</h2>
   `;
 
   const projectsContainer = document.createElement('div');
@@ -25,12 +28,13 @@ export function renderProjects(projectsList, indexString = '03') {
   const featuredProjects = (projectsList || []).filter(p => p.featured);
   const compactProjects = (projectsList || []).filter(p => !p.featured);
 
-  // 1. Featured projects (Large cards)
+  // 1. Featured projects (Large Dossier Cards)
   if (featuredProjects.length > 0) {
     const featuredGrid = document.createElement('div');
     featuredGrid.className = 'featured-projects';
 
-    featuredProjects.forEach((proj) => {
+    featuredProjects.forEach((proj, fIdx) => {
+      const catalogNum = `DWG-${String(fIdx + 1).padStart(3, '0')}`;
       const card = document.createElement('article');
       card.className = 'project-card';
       card.id = `project-${proj.id}`;
@@ -39,7 +43,10 @@ export function renderProjects(projectsList, indexString = '03') {
       const cardHeader = document.createElement('div');
       cardHeader.className = 'project-card-header';
       cardHeader.innerHTML = `
-        <h3 class="project-card-title">${proj.title}</h3>
+        <div>
+          <span class="project-dossier-id font-mono">${catalogNum}</span>
+          <h3 class="project-card-title">${proj.title}</h3>
+        </div>
         <span class="project-date font-mono">${proj.start} — ${proj.end}</span>
       `;
 
@@ -47,25 +54,7 @@ export function renderProjects(projectsList, indexString = '03') {
       const cardBody = document.createElement('div');
       cardBody.className = 'project-card-body';
 
-      // Summary
-      const summary = document.createElement('p');
-      summary.className = 'project-summary';
-      summary.textContent = proj.summary;
-      cardBody.appendChild(summary);
-
-      // Details bullet list
-      if (proj.details && proj.details.length > 0) {
-        const ul = document.createElement('ul');
-        ul.className = 'project-details-list';
-        proj.details.forEach((det) => {
-          const li = document.createElement('li');
-          li.textContent = det;
-          ul.appendChild(li);
-        });
-        cardBody.appendChild(ul);
-      }
-
-      // Image or dashed placeholder
+      // CAD Image or dashed placeholder
       if (proj.image) {
         if (proj.image.src && proj.image.src.trim() !== '') {
           const img = document.createElement('img');
@@ -89,6 +78,24 @@ export function renderProjects(projectsList, indexString = '03') {
         }
       }
 
+      // Summary
+      const summary = document.createElement('p');
+      summary.className = 'project-summary';
+      summary.textContent = proj.summary;
+      cardBody.appendChild(summary);
+
+      // Details bullet list
+      if (proj.details && proj.details.length > 0) {
+        const ul = document.createElement('ul');
+        ul.className = 'project-details-list';
+        proj.details.forEach((det) => {
+          const li = document.createElement('li');
+          li.textContent = det;
+          ul.appendChild(li);
+        });
+        cardBody.appendChild(ul);
+      }
+
       // Tag cloud
       if (proj.tags && proj.tags.length > 0) {
         const tagCloud = document.createElement('div');
@@ -102,14 +109,18 @@ export function renderProjects(projectsList, indexString = '03') {
         cardBody.appendChild(tagCloud);
       }
 
-      // External / anchor link (only rendered if non-empty)
-      if (proj.link && proj.link.trim() !== '') {
-        const link = document.createElement('a');
-        link.className = 'project-link-action';
-        link.href = proj.link;
-        link.textContent = 'View technical documentation →';
-        cardBody.appendChild(link);
-      }
+      // Interactive Blueprint Drawer Button
+      const openBtn = document.createElement('button');
+      openBtn.type = 'button';
+      openBtn.className = 'btn-open-dossier';
+      openBtn.innerHTML = `
+        <span>Inspect Blueprint Dossier [${catalogNum}]</span>
+        <span class="btn-open-dossier-arrow" aria-hidden="true">→</span>
+      `;
+      openBtn.addEventListener('click', () => {
+        openBlueprintDrawer(proj, fIdx + 1);
+      });
+      cardBody.appendChild(openBtn);
 
       card.appendChild(cardHeader);
       card.appendChild(cardBody);
@@ -119,20 +130,23 @@ export function renderProjects(projectsList, indexString = '03') {
     projectsContainer.appendChild(featuredGrid);
   }
 
-  // 2. Compact projects (Native <details> expandable list)
+  // 2. Compact projects (Catalog List with Dossier Inspection)
   if (compactProjects.length > 0) {
     const compactSection = document.createElement('div');
     compactSection.className = 'compact-projects-section';
 
     const compactHeading = document.createElement('h3');
     compactHeading.className = 'compact-projects-heading font-mono';
-    compactHeading.textContent = 'Additional Engineering Projects & Analyses';
+    compactHeading.textContent = 'Additional Engineering Systems & Analyses';
     compactSection.appendChild(compactHeading);
 
     const compactList = document.createElement('div');
     compactList.className = 'compact-list';
 
-    compactProjects.forEach((proj) => {
+    compactProjects.forEach((proj, cIdx) => {
+      const overallIndex = (featuredProjects.length || 0) + cIdx + 1;
+      const catalogNum = `DWG-${String(overallIndex).padStart(3, '0')}`;
+
       const details = document.createElement('details');
       details.className = 'compact-item';
       details.id = `project-${proj.id}`;
@@ -142,7 +156,10 @@ export function renderProjects(projectsList, indexString = '03') {
       summary.className = 'compact-summary';
       summary.innerHTML = `
         <div class="compact-summary-left">
-          <span class="compact-title">${proj.title}</span>
+          <div style="display: flex; align-items: center; gap: var(--space-2);">
+            <span class="project-dossier-id font-mono">${catalogNum}</span>
+            <span class="compact-title">${proj.title}</span>
+          </div>
           <span class="compact-hook">${proj.summary}</span>
         </div>
         <div class="compact-summary-right">
@@ -203,14 +220,19 @@ export function renderProjects(projectsList, indexString = '03') {
         expBody.appendChild(tagCloud);
       }
 
-      // Link (only if non-empty)
-      if (proj.link && proj.link.trim() !== '') {
-        const link = document.createElement('a');
-        link.className = 'project-link-action';
-        link.href = proj.link;
-        link.textContent = 'View project specifications →';
-        expBody.appendChild(link);
-      }
+      // Drawer trigger for compact items
+      const openBtn = document.createElement('button');
+      openBtn.type = 'button';
+      openBtn.className = 'btn-open-dossier';
+      openBtn.innerHTML = `
+        <span>Inspect Blueprint Dossier [${catalogNum}]</span>
+        <span class="btn-open-dossier-arrow" aria-hidden="true">→</span>
+      `;
+      openBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        openBlueprintDrawer(proj, overallIndex);
+      });
+      expBody.appendChild(openBtn);
 
       details.appendChild(summary);
       details.appendChild(expBody);

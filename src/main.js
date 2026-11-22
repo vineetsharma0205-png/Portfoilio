@@ -13,6 +13,7 @@ import { renderSkills } from './render/skills.js';
 import { renderCertifications } from './render/certifications.js';
 import { renderContact } from './render/contact.js';
 import { renderFooter } from './render/footer.js';
+import { initBlueprintDrawer } from './render/drawer.js';
 
 import { initTheme } from './lib/theme.js';
 import { initReveal } from './lib/reveal.js';
@@ -98,7 +99,7 @@ function init() {
   app.innerHTML = '';
   syncMetadata(siteData);
 
-  // 1. Header (receives identity and active sections array)
+  // 1. Header (floating dark capsule nav)
   const headerEl = renderHeader({
     identity: siteData.identity,
     sections: siteData.sections || []
@@ -119,7 +120,6 @@ function init() {
   }
 
   // 4. Dynamic Section Rendering
-  // Sections are ordered and filtered strictly according to siteData.sections
   const sectionRegistry = {
     about: (indexStr) => siteData.about ? renderAbout(siteData.about, indexStr) : null,
     experience: (indexStr) => siteData.experience ? renderExperience(siteData.experience, indexStr) : null,
@@ -151,6 +151,7 @@ function init() {
   app.appendChild(footerEl);
 
   // 6. Interactive Behaviors
+  initBlueprintDrawer();
   initTheme(document.getElementById('theme-toggle-btn'));
   initReveal();
   initScrollspy('.site-nav');

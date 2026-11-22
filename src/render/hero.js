@@ -1,6 +1,6 @@
 /**
- * Hero render module: engineering notebook intro, specification sheet block,
- * and technical metadata.
+ * Hero render module: Paul Fey inspired editorial title, Cormorant Garamond subtitle,
+ * tactile die-cut sticker badges, and gatefold specification docket.
  */
 
 export function renderHero({ hero, identity }) {
@@ -15,18 +15,37 @@ export function renderHero({ hero, identity }) {
   const metaBar = document.createElement('div');
   metaBar.className = 'hero-meta-bar';
   metaBar.innerHTML = `
-    <span class="hero-coords font-mono">SPEC_SHEET // REV. 2027</span>
+    <span class="hero-coords font-mono">DWG-2027 // CATALOG SPEC SHEET</span>
     <span class="font-mono">SYS_LOC: ${identity.location.toUpperCase()}</span>
   `;
 
-  // Main hero title & descriptor
+  // Massive Display Title in Bricolage Grotesque
   const title = document.createElement('h1');
   title.className = 'hero-title';
   title.textContent = identity.name;
 
+  // Editorial Cormorant subtitle
   const descriptor = document.createElement('p');
-  descriptor.className = 'hero-descriptor';
+  descriptor.className = 'hero-descriptor font-serif';
   descriptor.textContent = hero.descriptor;
+
+  // Tactile Die-Cut Badges / Sticker Cloud
+  const stickerCloud = document.createElement('div');
+  stickerCloud.className = 'sticker-cloud';
+
+  const badgeLabels = [
+    'IIITDM Kurnool \'27',
+    'IIT Roorkee Research',
+    'BAJA SAE Suspension',
+    'SolidWorks + ANSYS FEA'
+  ];
+
+  badgeLabels.forEach((label) => {
+    const badge = document.createElement('span');
+    badge.className = 'sticker-badge';
+    badge.innerHTML = `<span class="sticker-dot" aria-hidden="true"></span><span>${label}</span>`;
+    stickerCloud.appendChild(badge);
+  });
 
   // CTA buttons
   const ctaGroup = document.createElement('div');
@@ -36,7 +55,7 @@ export function renderHero({ hero, identity }) {
     const primaryBtn = document.createElement('a');
     primaryBtn.className = 'btn btn-primary';
     primaryBtn.href = hero.primaryCta.href;
-    primaryBtn.textContent = hero.primaryCta.label;
+    primaryBtn.innerHTML = `<span>${hero.primaryCta.label}</span><span aria-hidden="true">↓</span>`;
     ctaGroup.appendChild(primaryBtn);
   }
 
@@ -48,7 +67,7 @@ export function renderHero({ hero, identity }) {
     if (secondaryBtn.target === '_blank') {
       secondaryBtn.rel = 'noopener noreferrer';
     }
-    secondaryBtn.textContent = hero.secondaryCta.label;
+    secondaryBtn.innerHTML = `<span>${hero.secondaryCta.label}</span><span aria-hidden="true">↗</span>`;
     ctaGroup.appendChild(secondaryBtn);
   }
 
@@ -59,8 +78,8 @@ export function renderHero({ hero, identity }) {
   const specHeader = document.createElement('div');
   specHeader.className = 'spec-sheet-header';
   specHeader.innerHTML = `
-    <span>Engineering Profile Specifications</span>
-    <span>STATUS: ACTIVE</span>
+    <span>Engineering Dossier Specifications</span>
+    <span class="font-mono">STATUS: ACTIVE // VERIFIED</span>
   `;
   specSheet.appendChild(specHeader);
 
@@ -91,6 +110,7 @@ export function renderHero({ hero, identity }) {
   container.appendChild(metaBar);
   container.appendChild(title);
   container.appendChild(descriptor);
+  container.appendChild(stickerCloud);
   container.appendChild(ctaGroup);
   container.appendChild(specSheet);
   section.appendChild(container);

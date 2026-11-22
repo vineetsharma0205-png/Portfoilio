@@ -1,14 +1,14 @@
 /**
- * Header render module: produces the sticky navigation bar,
- * dynamic nav links based on active sections, and theme toggle.
+ * Header render module: Paul Fey inspired floating dark capsule navigation bar
+ * with brand dot, active section links, theme toggle, and mobile menu.
  */
 
 export function renderHeader({ identity, sections = [] }) {
   const header = document.createElement('header');
   header.className = 'site-header';
 
-  const container = document.createElement('div');
-  container.className = 'container header-inner';
+  const capsule = document.createElement('div');
+  capsule.className = 'nav-capsule';
 
   // Brand link / Monogram
   const brandLink = document.createElement('a');
@@ -16,25 +16,20 @@ export function renderHeader({ identity, sections = [] }) {
   brandLink.href = '#';
   brandLink.setAttribute('aria-label', `${identity.name} - Home`);
   brandLink.innerHTML = `
-    <span class="brand-mark" aria-hidden="true"></span>
+    <span class="brand-dot" aria-hidden="true"></span>
     <span>${identity.name}</span>
   `;
-
-  // Right nav cluster
-  const navCluster = document.createElement('div');
-  navCluster.className = 'nav-cluster';
 
   // Navigation menu
   const nav = document.createElement('nav');
   nav.className = 'site-nav';
   nav.setAttribute('aria-label', 'Primary');
 
-  // Format section id into display label
   const sectionLabels = {
     about: 'About',
     experience: 'Experience',
-    projects: 'Projects',
-    skills: 'Skills',
+    projects: 'Dossiers',
+    skills: 'Specs',
     certifications: 'Certs',
     contact: 'Contact'
   };
@@ -78,13 +73,11 @@ export function renderHeader({ identity, sections = [] }) {
     }
   });
 
-  navCluster.appendChild(nav);
-  navCluster.appendChild(themeToggle);
-  navCluster.appendChild(menuToggle);
-
-  container.appendChild(brandLink);
-  container.appendChild(navCluster);
-  header.appendChild(container);
+  capsule.appendChild(brandLink);
+  capsule.appendChild(nav);
+  capsule.appendChild(themeToggle);
+  capsule.appendChild(menuToggle);
+  header.appendChild(capsule);
 
   return header;
 }

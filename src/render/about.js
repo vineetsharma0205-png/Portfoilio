@@ -38,7 +38,7 @@ export function renderAbout(about, indexString = '01') {
     const card = document.createElement('div');
     card.className = 'metric-card';
     card.innerHTML = `
-      <span class="metric-value font-mono">${metric.value}</span>
+      <span class="metric-value">${metric.value}</span>
       <span class="metric-label">${metric.label}</span>
       <span class="metric-source font-mono">// ${metric.source}</span>
     `;
