@@ -93,7 +93,7 @@
         "Reduced build cost by 10% while meeting structural and dynamic targets."
       ],
       "tags": ["DFM/DFA", "Fabrication", "Material selection"],
-      "image": { "src": "", "alt": "Go-kart", "placeholder": "Image placeholder: go-kart" },
+      "image": { "src": "/images/go-kart.jpg", "alt": "Formula student competition go-kart spaceframe chassis CAD render", "placeholder": "Image placeholder: go-kart" },
       "link": ""
     },
     {
@@ -108,7 +108,7 @@
         "Modular architecture reduced assembly time by 15%."
       ],
       "tags": ["Parametric CAD", "Electromechanical", "Modular design"],
-      "image": { "src": "", "alt": "Kinetic LED lamp", "placeholder": "Image placeholder: lamp assembly" },
+      "image": { "src": "/images/ambient-node.jpg", "alt": "Ambient Node modular kinetic LED desk lamp industrial design CAD render", "placeholder": "Image placeholder: lamp assembly" },
       "link": ""
     },
     {
@@ -138,7 +138,7 @@
         "Improved predictive accuracy of deformation, giving a data-driven basis for structural validation and failure prevention."
       ],
       "tags": ["MATLAB", "Stress-strain", "Numerical methods"],
-      "image": { "src": "", "alt": "Strain field plot", "placeholder": "Image placeholder: strain plot" },
+      "image": { "src": "/images/strain-analysis.jpg", "alt": "FEA structural strain analysis and von Mises stress heatmap simulation", "placeholder": "Image placeholder: strain plot" },
       "link": ""
     }
   ],

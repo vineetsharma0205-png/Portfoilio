@@ -1,7 +1,7 @@
 /**
- * Header render module: Super Eight Studio morphing navigation bar.
- * Features overlapping circle monogram mark, editorial navigation links,
- * rounded pill CTA, and scroll-triggered compact floating capsule state.
+ * Header render module: Thanh Tran (thanhvtran.com) minimalist navigation bar.
+ * Clean brand on the left with crimson accent dot, uppercase navigation items,
+ * and high-contrast responsive menu toggle.
  */
 
 export function renderHeader({ identity, sections = [] }) {
@@ -12,50 +12,40 @@ export function renderHeader({ identity, sections = [] }) {
   const inner = document.createElement('div');
   inner.className = 'header-inner';
 
-  // Brand link with Super Eight overlapping circles
+  // Brand link with crimson accent dot
   const brandLink = document.createElement('a');
   brandLink.className = 'brand-link';
   brandLink.href = '#';
-  brandLink.setAttribute('aria-label', `${identity.name} - Home`);
+  brandLink.setAttribute('aria-label', `${identity.name} - Mechanical Engineering Home`);
   brandLink.innerHTML = `
-    <span class="brand-circles" aria-hidden="true">
-      <span class="brand-circle-1"></span>
-      <span class="brand-circle-2"></span>
-    </span>
     <span>${identity.name}</span>
+    <span class="brand-accent-dot" aria-hidden="true"></span>
   `;
 
   // Center navigation menu
   const nav = document.createElement('nav');
   nav.className = 'site-nav';
-  nav.setAttribute('aria-label', 'Primary');
+  nav.setAttribute('aria-label', 'Primary navigation');
 
-  const sectionLabels = {
-    about: 'About',
-    experience: 'Experience',
-    projects: 'Work',
-    skills: 'Services',
-    certifications: 'Certs',
-    contact: 'Contact'
-  };
+  const navItems = [
+    { id: 'about', label: 'ABOUT' },
+    { id: 'experience', label: 'EXPERIENCE' },
+    { id: 'projects', label: 'PROJECTS' },
+    { id: 'skills', label: 'SKILLS' },
+    { id: 'contact', label: 'CONTACT' }
+  ];
 
-  sections.forEach((secId) => {
+  navItems.forEach((item) => {
     const link = document.createElement('a');
     link.className = 'nav-link';
-    link.href = `#${secId}`;
-    link.textContent = sectionLabels[secId] || secId;
+    link.href = `#${item.id}`;
+    link.textContent = item.label;
     nav.appendChild(link);
   });
 
   // Right action cluster
   const actions = document.createElement('div');
   actions.className = 'header-actions';
-
-  // Pill CTA
-  const pillCta = document.createElement('a');
-  pillCta.className = 'btn-pill-cta';
-  pillCta.href = '#contact';
-  pillCta.innerHTML = `<span>Get in touch</span><span aria-hidden="true">↗</span>`;
 
   // Theme toggle button
   const themeToggle = document.createElement('button');
@@ -71,23 +61,22 @@ export function renderHeader({ identity, sections = [] }) {
   menuToggle.className = 'menu-toggle';
   menuToggle.setAttribute('aria-label', 'Toggle navigation menu');
   menuToggle.setAttribute('aria-expanded', 'false');
-  menuToggle.textContent = '[ Menu ]';
+  menuToggle.textContent = 'MENU';
 
   menuToggle.addEventListener('click', () => {
     const isOpen = nav.classList.toggle('is-open');
     menuToggle.setAttribute('aria-expanded', String(isOpen));
-    menuToggle.textContent = isOpen ? '[ Close ]' : '[ Menu ]';
+    menuToggle.textContent = isOpen ? 'CLOSE' : 'MENU';
   });
 
   nav.addEventListener('click', (e) => {
     if (e.target.matches('.nav-link')) {
       nav.classList.remove('is-open');
       menuToggle.setAttribute('aria-expanded', 'false');
-      menuToggle.textContent = '[ Menu ]';
+      menuToggle.textContent = 'MENU';
     }
   });
 
-  actions.appendChild(pillCta);
   actions.appendChild(themeToggle);
   actions.appendChild(menuToggle);
 
@@ -95,15 +84,6 @@ export function renderHeader({ identity, sections = [] }) {
   inner.appendChild(nav);
   inner.appendChild(actions);
   header.appendChild(inner);
-
-  // Scroll morphing: becomes compact floating capsule on scroll
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 40) {
-      header.classList.add('is-compact');
-    } else {
-      header.classList.remove('is-compact');
-    }
-  }, { passive: true });
 
   return header;
 }

@@ -1,6 +1,6 @@
 /* =========================================================================
    base.css: Reset, typography, accessibility, and utility primitives.
-   Faithfully inspired by Super Eight Studio (supereightstudio.com).
+   Faithfully inspired by Thanh Tran (thanhvtran.com).
    Zero raw hex codes. All colors, spacing, and typography use CSS variables.
    ========================================================================= */
 
@@ -13,8 +13,8 @@
 html {
   font-family: var(--font-body);
   font-size: 16px;
-  line-height: 1.6;
-  color: var(--text-main);
+  line-height: 1.7;
+  color: var(--ink-body);
   background-color: var(--bg);
   scroll-behavior: smooth;
   text-rendering: optimizeLegibility;
@@ -27,24 +27,24 @@ body {
   display: flex;
   flex-direction: column;
   background-color: var(--bg);
-  color: var(--text-main);
+  color: var(--ink-body);
   overflow-x: hidden;
   transition: background-color var(--transition-base), color var(--transition-base);
 }
 
 /* Headings */
 h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-display);
-  font-weight: 900;
-  line-height: 0.88;
-  letter-spacing: -0.015em;
-  text-transform: uppercase;
-  color: inherit;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--ink);
+  letter-spacing: -0.01em;
 }
 
 p {
-  color: inherit;
+  color: var(--ink-body);
   margin-bottom: var(--space-3);
+  font-size: var(--text-base);
 }
 
 p:last-child {
@@ -54,7 +54,7 @@ p:last-child {
 a {
   color: inherit;
   text-decoration: none;
-  transition: color var(--transition-fast), opacity var(--transition-fast);
+  transition: color var(--transition-fast);
 }
 
 a:hover {
@@ -63,14 +63,6 @@ a:hover {
 
 code, kbd, samp, pre, .font-mono {
   font-family: var(--font-mono);
-}
-
-.font-serif {
-  font-family: var(--font-serif);
-}
-
-.font-sans {
-  font-family: var(--font-sans);
 }
 
 img, svg {
@@ -108,20 +100,20 @@ button, input, textarea, select {
   max-width: var(--max-width);
   margin-left: auto;
   margin-right: auto;
-  padding-left: clamp(1.25rem, 3.5vw, 2.5rem);
-  padding-right: clamp(1.25rem, 3.5vw, 2.5rem);
+  padding-left: 24px;
+  padding-right: 24px;
 }
 
-/* Scroll margin offset for morphing header */
+/* Scroll margin offset for sticky header */
 section[id] {
-  scroll-margin-top: calc(var(--header-h) + var(--space-3));
+  scroll-margin-top: var(--header-h);
 }
 
 /* Scroll reveal base classes */
 .reveal {
   opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 550ms var(--ease-smooth), transform 550ms var(--ease-smooth);
+  transform: translateY(18px);
+  transition: opacity 500ms var(--transition-base), transform 500ms var(--transition-base);
   will-change: opacity, transform;
 }
 

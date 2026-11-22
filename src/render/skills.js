@@ -1,45 +1,38 @@
 /**
- * Skills render module: Super Eight Studio exact 2x2 Services Grid.
- * Partitioned by hairline dividers with tracked numbers and pill chips.
+ * Skills render module: Thanh Tran (thanhvtran.com) technical capabilities cards.
+ * Clean architectural cards with crimson accent rules and bulleted competencies.
  */
 
 export function renderSkills(skillsList, indexString = '04') {
   const section = document.createElement('section');
-  section.className = 'section-wrapper reveal';
+  section.className = 'section-white reveal';
   section.id = 'skills';
 
   const container = document.createElement('div');
   container.className = 'container';
 
-  // Section Header
-  const header = document.createElement('header');
-  header.className = 'section-header';
-  header.innerHTML = `
-    <div class="section-eyebrow">${indexString} / SERVICES & CAPABILITIES</div>
-    <h2 class="section-serif-title font-serif">Engineering Competencies & Tools</h2>
-  `;
+  const heading = document.createElement('h2');
+  heading.className = 'section-heading-dark';
+  heading.innerHTML = `<span class="heading-accent-bar" aria-hidden="true"></span>SKILLS & CAPABILITIES`;
 
   const grid = document.createElement('div');
-  grid.className = 'skills-s8-grid';
+  grid.className = 'skills-thanh-grid';
 
-  (skillsList || []).forEach((groupObj, idx) => {
-    const cell = document.createElement('div');
-    cell.className = 'skill-s8-cell';
+  (skillsList || []).forEach((groupObj) => {
+    const card = document.createElement('div');
+    card.className = 'skill-thanh-card';
 
-    const indexNum = String(idx + 1).padStart(2, '0');
-
-    cell.innerHTML = `
-      <div class="skill-cell-num font-mono">${indexNum} // SPECIALITY</div>
-      <h3 class="skill-cell-heading">${groupObj.group}</h3>
-      <div class="skill-pills-wrap font-sans">
-        ${(groupObj.items || []).map(item => `<span class="skill-pill">${item}</span>`).join('')}
-      </div>
+    card.innerHTML = `
+      <h3 class="skill-thanh-title">${groupObj.group}</h3>
+      <ul class="skill-thanh-items">
+        ${(groupObj.items || []).map(item => `<li>${item}</li>`).join('')}
+      </ul>
     `;
 
-    grid.appendChild(cell);
+    grid.appendChild(card);
   });
 
-  container.appendChild(header);
+  container.appendChild(heading);
   container.appendChild(grid);
   section.appendChild(container);
 

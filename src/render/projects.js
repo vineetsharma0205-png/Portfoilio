@@ -1,76 +1,87 @@
 /**
- * Projects render module: Super Eight Studio "SELECTED WORK" exact architecture.
- * Alternating full-width hero and 2-column cards, floating badge pills,
- * and seamless Gatefold Blueprint Drawer case study modal trigger.
+ * Projects render module: Thanh Tran (thanhvtran.com) full-width PROJECTS banner
+ * and 2-column image grid with dark hover overlay and blueprint modal inspection.
  */
 
 import { openBlueprintDrawer } from './drawer.js';
 
-export function renderProjects(projectsList, indexString = '01') {
+export function renderProjects(projectsList, indexString = '03') {
   const section = document.createElement('section');
-  section.className = 'section-wrapper reveal';
+  section.className = 'reveal';
   section.id = 'projects';
+
+  // Full-Width Black Banner (Thanh Tran Signature)
+  const banner = document.createElement('div');
+  banner.className = 'projects-banner';
+  banner.innerHTML = `<h2 class="projects-banner-title">PROJECTS</h2>`;
+  section.appendChild(banner);
+
+  // 2-Column Projects Grid on clean canvas
+  const wrapper = document.createElement('div');
+  wrapper.className = 'projects-section-thanh';
 
   const container = document.createElement('div');
   container.className = 'container';
 
-  // Section Header (Super Eight Serif Title)
-  const header = document.createElement('header');
-  header.className = 'section-header';
-  header.innerHTML = `
-    <div class="section-eyebrow">${indexString} / SELECTED WORK</div>
-    <h2 class="section-serif-title font-serif">Selected Engineering Work</h2>
-  `;
-
-  // Projects Grid
   const grid = document.createElement('div');
-  grid.className = 'projects-grid';
+  grid.className = 'projects-grid-thanh';
+
+  const fallbackImages = [
+    '/images/baja-suspension.jpg',
+    '/images/braille-cam-mechanism.jpg',
+    '/images/rover-cad-fea.jpg',
+    '/images/baja-suspension.jpg',
+    '/images/rover-cad-fea.jpg',
+    '/images/braille-cam-mechanism.jpg'
+  ];
 
   (projectsList || []).forEach((proj, idx) => {
-    const item = document.createElement('div');
-    item.className = `project-item ${proj.featured ? 'is-featured' : ''}`;
-
     const card = document.createElement('article');
-    card.className = 'project-card-s8';
+    card.className = 'project-card-thanh';
     card.id = `project-${proj.id}`;
+    card.setAttribute('tabindex', '0');
+    card.setAttribute('role', 'button');
+    card.setAttribute('aria-label', `View engineering details for ${proj.title}`);
 
-    // Media Wrapper
-    const media = document.createElement('div');
-    media.className = 'project-media-wrapper';
+    const imgSrc = (proj.image && proj.image.src) ? proj.image.src : fallbackImages[idx % fallbackImages.length];
+    const imgAlt = (proj.image && proj.image.alt) ? proj.image.alt : proj.title;
 
-    const imgSrc = proj.image && proj.image.src ? proj.image.src : '/images/baja-suspension.jpg';
-    const imgAlt = proj.image?.alt || proj.title;
-
-    media.innerHTML = `
-      <img src="${imgSrc}" alt="${imgAlt}" class="project-media-img" loading="lazy">
-      <div class="project-floating-badge font-sans">
-        ${proj.tags && proj.tags.length ? proj.tags.slice(0, 2).join(' · ') : 'CAD / FEA'} · ${proj.end || '2026'}
+    card.innerHTML = `
+      <img src="${imgSrc}" alt="${imgAlt}" class="project-img-thanh" loading="lazy">
+      <div class="project-overlay-thanh">
+        <h3 class="overlay-title-thanh">${proj.title}</h3>
+        <p class="overlay-subtitle-thanh">${proj.summary}</p>
+        <span class="overlay-btn-thanh">View Project <span>→</span></span>
       </div>
     `;
 
-    // Footer Metadata
-    const footer = document.createElement('div');
-    footer.className = 'project-footer-meta';
-    footer.innerHTML = `
-      <h3 class="project-name">${proj.title}</h3>
-      <span class="project-serif-summary font-serif">${proj.summary}</span>
-    `;
-
-    card.appendChild(media);
-    card.appendChild(footer);
-
-    // Click triggers Gatefold Blueprint Drawer
+    // Open detailed case study dossier on click or keyboard Enter
     card.addEventListener('click', () => {
       openBlueprintDrawer(proj, idx + 1);
     });
+    card.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        openBlueprintDrawer(proj, idx + 1);
+      }
+    });
 
-    item.appendChild(card);
-    grid.appendChild(item);
+    grid.appendChild(card);
   });
 
-  container.appendChild(header);
+  // Bottom Action Button Row
+  const bottomActions = document.createElement('div');
+  bottomActions.className = 'projects-bottom-actions';
+  bottomActions.innerHTML = `
+    <a href="https://github.com/Teeniv-16" target="_blank" rel="noopener noreferrer" class="btn-black-outline">
+      View CAD Repositories on GitHub ↗
+    </a>
+  `;
+
   container.appendChild(grid);
-  section.appendChild(container);
+  container.appendChild(bottomActions);
+  wrapper.appendChild(container);
+  section.appendChild(wrapper);
 
   return section;
 }

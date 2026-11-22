@@ -1,102 +1,109 @@
 /**
- * About render module: Super Eight Studio exact Quote & Giant Teal Stat Card architecture.
- * Features large Instrument Serif quote card alongside high-impact Big Shoulders stat cards.
+ * About render module: Thanh Tran (thanhvtran.com) signature summary & personality cards.
+ * Features an authentic personal introduction, side-by-side Strengths & Weaknesses cards,
+ * and key quantitative engineering performance metrics.
  */
 
-export function renderAbout(about, indexString = '02') {
+export function renderAbout(about, indexString = '01') {
   const section = document.createElement('section');
-  section.className = 'section-wrapper reveal';
+  section.className = 'section-white reveal';
   section.id = 'about';
 
   const container = document.createElement('div');
   container.className = 'container';
 
-  // Section Header
-  const header = document.createElement('header');
-  header.className = 'section-header';
-  header.innerHTML = `
-    <div class="section-eyebrow">${indexString} / PHILOSOPHY & IMPACT</div>
-    <h2 class="section-serif-title font-serif">Measurable Engineering Results</h2>
+  // Section Heading with crimson accent indicator
+  const heading = document.createElement('h2');
+  heading.className = 'section-heading-dark';
+  heading.innerHTML = `<span class="heading-accent-bar" aria-hidden="true"></span>ABOUT ME`;
+
+  // Summary narrative
+  const leadText = document.createElement('p');
+  leadText.className = 'summary-lead';
+  leadText.textContent = (about.paragraphs && about.paragraphs.join(' ')) ||
+    "I am an undergraduate mechanical engineering student at IIITDM Kurnool with hands-on experience in CAD/CAE, structural FEA, electromechanical prototyping, and system-level vehicle design. My work spans IIT Roorkee research, BAJA SAE suspension engineering, and multi-disciplinary fabrication projects, each validated with measurable real-world results.";
+
+  // Personality Grid: Strengths & Weaknesses
+  const grid = document.createElement('div');
+  grid.className = 'personality-grid';
+
+  // Strengths Card
+  const strengthsCard = document.createElement('div');
+  strengthsCard.className = 'personality-card';
+  strengthsCard.innerHTML = `
+    <h3 class="personality-title">STRENGTHS</h3>
+    <ul class="personality-list">
+      <li>SolidWorks & Siemens NX (Certified) CAD modeling with strict DFM/DFA compliance</li>
+      <li>Finite Element Analysis (FEA) & dynamic structural load validation in ANSYS</li>
+      <li>Electromechanical prototyping: Arduino microcontrollers, stepper motor drive systems & serial communication</li>
+      <li>Hands-on metal fabrication, workshop machining, and physical assembly</li>
+      <li>Data-driven numerical modeling and deformation field computation in MATLAB & Python</li>
+    </ul>
   `;
 
-  // Narrative text row
-  const textRow = document.createElement('div');
-  textRow.className = 'about-text';
-  textRow.style.maxWidth = '64ch';
-  textRow.style.fontSize = 'var(--text-lg)';
-  textRow.style.lineHeight = '1.6';
-  textRow.style.color = 'var(--muted-dark)';
-  textRow.style.marginBottom = 'var(--space-5)';
-
-  (about.paragraphs || []).forEach((pText) => {
-    const p = document.createElement('p');
-    p.textContent = pText;
-    textRow.appendChild(p);
-  });
-
-  // Super Eight Quote & Teal Stat Cards Grid
-  const statsGrid = document.createElement('div');
-  statsGrid.className = 'stats-quotes-grid';
-
-  // 1. Quote Card
-  const quoteCard = document.createElement('div');
-  quoteCard.className = 'quote-card';
-  quoteCard.innerHTML = `
-    <p class="quote-text font-serif">
-      "Engineering is not about aesthetic decoration. It is the rigorous application of finite element analysis, material physics, and design for manufacturing to deliver lighter, stronger mechanical systems."
-    </p>
-    <div class="quote-citation font-sans">
-      — IIT Roorkee & BAJA SAE Engineering Principles
-    </div>
+  // Weaknesses Card (Authentic & Relatable Engineer Traits)
+  const weaknessesCard = document.createElement('div');
+  weaknessesCard.className = 'personality-card weakness';
+  weaknessesCard.innerHTML = `
+    <h3 class="personality-title">WEAKNESSES</h3>
+    <ul class="personality-list">
+      <li>Obsessive about CAD feature tree cleanliness, naming conventions, and fully defined sketches</li>
+      <li>Can spend excessive hours fine-tuning FEA mesh convergence and boundary conditions</li>
+      <li>Prefers physical workshop fabrication and machining over prolonged meetings</li>
+      <li>Strong coffee dependency during vehicle build and testing cycles</li>
+    </ul>
   `;
 
-  // 2. High-contrast Teal Stat Card
-  const firstMetric = (about.metrics && about.metrics[0]) || { value: "12%", label: "Unsprung mass reduction", source: "BAJA SAE" };
-  const statCard = document.createElement('div');
-  statCard.className = 'stat-card-teal';
-  statCard.innerHTML = `
-    <div class="stat-giant-digit">${firstMetric.value}</div>
-    <div class="stat-caption font-sans">
-      ${firstMetric.label} engineered via topology optimization and validated load paths (${firstMetric.source}).
-    </div>
-  `;
+  grid.appendChild(strengthsCard);
+  grid.appendChild(weaknessesCard);
 
-  statsGrid.appendChild(quoteCard);
-  statsGrid.appendChild(statCard);
+  container.appendChild(heading);
+  container.appendChild(leadText);
+  container.appendChild(grid);
 
-  // Additional metrics in clean strip
-  const extraMetrics = (about.metrics || []).slice(1);
-  if (extraMetrics.length > 0) {
-    const extraGrid = document.createElement('div');
-    extraGrid.style.display = 'grid';
-    extraGrid.style.gridTemplateColumns = 'repeat(auto-fit, minmax(220px, 1fr))';
-    extraGrid.style.gap = 'var(--space-3)';
-    extraGrid.style.marginTop = 'var(--space-4)';
+  // Quantitative Performance Metrics Strip
+  if (about.metrics && about.metrics.length > 0) {
+    const metricsWrapper = document.createElement('div');
+    metricsWrapper.style.marginTop = 'var(--space-5)';
+    metricsWrapper.style.paddingTop = 'var(--space-4)';
+    metricsWrapper.style.borderTop = '1px solid var(--line)';
 
-    extraMetrics.forEach((m) => {
-      const card = document.createElement('div');
-      card.style.backgroundColor = 'var(--surface)';
-      card.style.border = '1px solid var(--line)';
-      card.style.borderRadius = 'var(--radius-card)';
-      card.style.padding = 'var(--space-3) var(--space-4)';
-      card.innerHTML = `
-        <div style="font-family: var(--font-display); font-size: var(--text-2xl); font-weight: 900; color: var(--teal); line-height: 1;">${m.value}</div>
-        <div style="font-size: var(--text-sm); font-weight: 600; color: var(--text-main); margin-top: 0.25rem;">${m.label}</div>
-        <div style="font-family: var(--font-mono); font-size: 11px; color: var(--muted-dark); margin-top: 0.25rem;">// ${m.source}</div>
+    const metricsHeading = document.createElement('h4');
+    metricsHeading.style.fontFamily = 'var(--font-display)';
+    metricsHeading.style.fontSize = 'var(--text-sm)';
+    metricsHeading.style.fontWeight = '700';
+    metricsHeading.style.letterSpacing = '1px';
+    metricsHeading.style.textTransform = 'uppercase';
+    metricsHeading.style.color = 'var(--muted)';
+    metricsHeading.style.marginBottom = 'var(--space-3)';
+    metricsHeading.textContent = 'MEASURED ENGINEERING IMPACT';
+
+    const metricsGrid = document.createElement('div');
+    metricsGrid.style.display = 'grid';
+    metricsGrid.style.gridTemplateColumns = 'repeat(auto-fit, minmax(200px, 1fr))';
+    metricsGrid.style.gap = 'var(--space-3)';
+
+    about.metrics.forEach((m) => {
+      const mCard = document.createElement('div');
+      mCard.style.backgroundColor = 'var(--surface-alt)';
+      mCard.style.border = '1px solid var(--line)';
+      mCard.style.borderRadius = 'var(--radius-card)';
+      mCard.style.padding = 'var(--space-3) var(--space-4)';
+
+      mCard.innerHTML = `
+        <div style="font-family: var(--font-display); font-size: var(--text-2xl); font-weight: 800; color: var(--accent); line-height: 1;">${m.value}</div>
+        <div style="font-size: var(--text-sm); font-weight: 600; color: var(--ink); margin-top: 0.35rem;">${m.label}</div>
+        <div style="font-family: var(--font-mono); font-size: 11px; color: var(--muted); margin-top: 0.25rem;">// ${m.source}</div>
       `;
-      extraGrid.appendChild(card);
+      metricsGrid.appendChild(mCard);
     });
 
-    container.appendChild(header);
-    container.appendChild(textRow);
-    container.appendChild(statsGrid);
-    container.appendChild(extraGrid);
-  } else {
-    container.appendChild(header);
-    container.appendChild(textRow);
-    container.appendChild(statsGrid);
+    metricsWrapper.appendChild(metricsHeading);
+    metricsWrapper.appendChild(metricsGrid);
+    container.appendChild(metricsWrapper);
   }
 
   section.appendChild(container);
+
   return section;
 }

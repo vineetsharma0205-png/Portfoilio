@@ -1,67 +1,68 @@
 /* =========================================================================
    Change colors and fonts here.
    Single source of truth for design tokens, typography, spacing, and theming.
-   Faithfully replicating Super Eight Studio (supereightstudio.com).
+   Faithfully inspired by Thanh Tran's Mechanical Engineering Portfolio (thanhvtran.com).
    ========================================================================= */
 
 :root {
-  /* Super Eight Core Palette */
-  --ink: #131313;            /* Deep obsidian dark */
-  --ink-2: #2A2A2A;          /* Elevated dark */
-  --stone: #F6F5F1;          /* Primary warm stone surface */
-  --paper: #E7E5DF;          /* Card & docket background */
-  --card-bg: #FFFFFF;        /* Crisp card surface */
-  --muted: #6F6C66;          /* Medium contrast neutral */
-  --muted-dark: #A9A69E;     /* Soft stone contrast */
+  /* Thanh Tran Signature Clean Industrial Palette */
+  --bg: #FFFFFF;             /* Pure white canvas */
+  --bg-dark: #000000;        /* Pure black banner and footer */
+  --surface: #FFFFFF;        /* Clean white card surface */
+  --surface-alt: #F8F9FA;    /* Subtle architectural gray */
+  --ink: #000000;            /* 100% black primary headings */
+  --ink-body: #333333;       /* High-contrast readable body text */
+  --muted: #666666;          /* Subdued secondary metadata (dates, locations) */
+  --line: #E7E7E7;           /* Subtle hairline dividers */
+  --line-strong: #000000;    /* Strong black outline for industrial buttons */
 
-  /* Super Eight Signature Accents */
-  --teal: #07BCB4;           /* Electric cyan / teal signature highlight */
-  --teal-hover: #06A9A0;
-  --teal-soft: #9FECE4;
-  --orange: #F1501B;         /* Coral / orange brand secondary */
-  --orange-hover: #DA4818;
-  --orange-soft: #FFCFB0;
+  /* Thanh Tran Signature Accent */
+  --accent: #FB2056;         /* Vibrant crimson red / hot coral brand accent */
+  --accent-hover: #BA133B;   /* Deep crimson hover state */
+  --accent-soft: rgba(251, 32, 86, 0.12);
 
-  /* Theme Mapping */
-  --bg: #131313;             /* Default hero and night-sky surface */
-  --bg-light: #F6F5F1;       /* Light sections surface */
-  --surface: #1C1C1C;
-  --surface-alt: #262626;
-  --text-main: #F6F5F1;
-  --text-dark: #131313;
-  --accent: #07BCB4;
-  --accent-hover: #06A9A0;
-  --accent-2: #F1501B;
+  /* Hero & Card Overlays */
+  --overlay-hero: rgba(0, 0, 0, 0.55);
+  --overlay-card-hover: rgba(0, 0, 0, 0.82);
+  --white: #FFFFFF;
+  --black: #000000;
+  --text-light-muted: #E2E2E2;
+  --text-sub: #DDDDDD;
+  --text-foot-lead: #CCCCCC;
+  --input-dark-bg: #1A1A1A;
+  --input-dark-border: #333333;
+  --footer-rule: #222222;
+  --footer-credit: #777777;
 
-  /* Line Dividers & Outlines */
-  --line: rgba(246, 245, 241, 0.12);
-  --line-strong: rgba(246, 245, 241, 0.22);
-  --line-dark: rgba(19, 19, 19, 0.12);
+  /* Gatefold Case Study Drawer (Dark Industrial Spec Sheet) */
+  --gatefold-bg: #111111;
+  --gatefold-surface: #1A1A1A;
+  --gatefold-ink: #FFFFFF;
+  --gatefold-muted: #999999;
+  --gatefold-line: #2A2A2A;
 
   /* Status and feedback */
-  --success: #07BCB4;
-  --success-bg: rgba(7, 188, 180, 0.12);
-  --error: #F1501B;
-  --error-bg: rgba(241, 80, 27, 0.12);
-  --focus-ring: rgba(7, 188, 180, 0.4);
+  --success: #1E6B37;
+  --success-bg: #E8F5EC;
+  --error: #FB2056;
+  --error-bg: #FFF0F2;
+  --focus-ring: rgba(251, 32, 86, 0.4);
 
-  /* Typography System (Super Eight 3-Voice Architecture) */
-  --font-display: "Big Shoulders Display", Impact, sans-serif;
-  --font-serif: "Instrument Serif", Georgia, serif;
-  --font-sans: "Instrument Sans", system-ui, -apple-system, sans-serif;
+  /* Typography System */
+  --font-display: "Montserrat", system-ui, -apple-system, sans-serif;
+  --font-heading: "Montserrat", system-ui, -apple-system, sans-serif;
+  --font-body: "Open Sans", system-ui, -apple-system, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
-  --font-body: "Instrument Sans", system-ui, -apple-system, sans-serif;
 
   /* Fluid Type Scale */
-  --text-xs: clamp(0.72rem, 0.68rem + 0.2vw, 0.8rem);
-  --text-sm: clamp(0.8125rem, 0.775rem + 0.2vw, 0.875rem);
-  --text-base: clamp(0.95rem, 0.9rem + 0.25vw, 1.08rem);
-  --text-lg: clamp(1.15rem, 1.05rem + 0.35vw, 1.3rem);
-  --text-xl: clamp(1.35rem, 1.2rem + 0.5vw, 1.65rem);
-  --text-2xl: clamp(1.8rem, 1.5rem + 1vw, 2.4rem);
-  --text-3xl: clamp(2.5rem, 2rem + 2vw, 4rem);
-  --text-giant: clamp(3.2rem, 2.5rem + 4.5vw, 6.5rem);
-  --text-mega: clamp(4.5rem, 3.5rem + 8vw, 11rem);
+  --text-xs: clamp(0.75rem, 0.7rem + 0.2vw, 0.825rem);
+  --text-sm: clamp(0.85rem, 0.8rem + 0.2vw, 0.95rem);
+  --text-base: clamp(1rem, 0.95rem + 0.25vw, 1.08rem);
+  --text-lg: clamp(1.15rem, 1.05rem + 0.35vw, 1.35rem);
+  --text-xl: clamp(1.35rem, 1.25rem + 0.5vw, 1.75rem);
+  --text-2xl: clamp(1.8rem, 1.6rem + 1vw, 2.25rem);
+  --text-3xl: clamp(2.2rem, 1.8rem + 1.5vw, 3rem);
+  --text-hero: clamp(2.6rem, 5.5vw, 4.8rem);
 
   /* Spacing */
   --space-1: 0.25rem;
@@ -69,34 +70,32 @@
   --space-3: 1rem;
   --space-4: 2rem;
   --space-5: 4rem;
-  --space-6: 7rem;
-  --space-7: 10rem;
+  --space-6: 6rem;
+  --space-7: 8rem;
 
-  /* Shapes & Layout */
-  --max-width: 1320px;
-  --header-h: 80px;
-  --radius-sm: 8px;
-  --radius-card: 20px;
-  --radius-panel: 24px;
+  /* Layout and shapes */
+  --max-width: 1200px;
+  --header-h: 72px;
+  --radius-sm: 4px;
+  --radius-card: 6px;
   --radius-pill: 9999px;
 
-  /* Motion Physics (Super Eight signature smooth cubic-bezier) */
-  --ease-smooth: cubic-bezier(0.22, 1, 0.36, 1);
-  --ease-spring: cubic-bezier(0.34, 1.45, 0.64, 1);
-  --transition-fast: 180ms ease;
-  --transition-base: 360ms var(--ease-smooth);
-  --transition-slow: 600ms var(--ease-smooth);
+  /* Transitions */
+  --transition-fast: 160ms ease;
+  --transition-base: 300ms ease;
+  --transition-slow: 450ms ease;
 }
 
-[data-theme="light"] {
-  --bg: #F6F5F1;
-  --bg-light: #E7E5DF;
-  --surface: #FFFFFF;
-  --surface-alt: #E7E5DF;
-  --text-main: #131313;
-  --text-dark: #131313;
-  --muted: #6F6C66;
-  --muted-dark: #6F6C66;
-  --line: rgba(19, 19, 19, 0.12);
-  --line-strong: rgba(19, 19, 19, 0.22);
+[data-theme="dark"] {
+  --bg: #0E0E0E;
+  --bg-dark: #000000;
+  --surface: #181818;
+  --surface-alt: #222222;
+  --ink: #FFFFFF;
+  --ink-body: #CCCCCC;
+  --muted: #999999;
+  --line: #2A2A2A;
+  --line-strong: #FFFFFF;
+  --accent: #FB2056;
+  --accent-hover: #FF4D77;
 }
