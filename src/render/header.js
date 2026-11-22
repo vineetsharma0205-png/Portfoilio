@@ -12,14 +12,14 @@ export function renderHeader({ identity, sections = [] }) {
   const inner = document.createElement('div');
   inner.className = 'header-inner';
 
-  // Brand link with crimson accent dot
+  // Brand link with mechanical logo (name removed from top bar)
   const brandLink = document.createElement('a');
   brandLink.className = 'brand-link';
   brandLink.href = '#';
   brandLink.setAttribute('aria-label', `${identity.name} - Mechanical Engineering Home`);
   brandLink.innerHTML = `
-    <span>${identity.name}</span>
-    <span class="brand-accent-dot" aria-hidden="true"></span>
+    <img src="/images/site-logo.png" alt="${identity.name}" class="site-logo-img site-logo-light" width="80" height="42">
+    <img src="/images/site-logo-dark.png" alt="${identity.name}" class="site-logo-img site-logo-dark" width="80" height="42">
   `;
 
   // Center navigation menu
@@ -47,13 +47,13 @@ export function renderHeader({ identity, sections = [] }) {
   const actions = document.createElement('div');
   actions.className = 'header-actions';
 
-  // Theme toggle button
+  // Theme toggle button with icon symbol
   const themeToggle = document.createElement('button');
   themeToggle.type = 'button';
   themeToggle.className = 'theme-toggle';
   themeToggle.id = 'theme-toggle-btn';
-  themeToggle.textContent = '[ Mode ]';
   themeToggle.setAttribute('aria-label', 'Toggle light/dark theme');
+  themeToggle.innerHTML = `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>`;
 
   // Mobile menu button
   const menuToggle = document.createElement('button');
