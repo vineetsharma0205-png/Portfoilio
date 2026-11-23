@@ -30,7 +30,7 @@ export function renderHero({ hero, identity }) {
 
   const desc = document.createElement('p');
   desc.className = 'hero-descriptor';
-  desc.textContent = hero.descriptor || 'Working on CAD/CAE, structural FEA, and electromechanical prototyping.';
+  desc.textContent = hero.descriptor || 'Working on CAD/CAE and structural FEA.';
 
   const ctaCluster = document.createElement('div');
   ctaCluster.className = 'hero-cta-cluster';

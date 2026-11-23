@@ -29,9 +29,10 @@ export function renderHeader({ identity, sections = [] }) {
 
   const navItems = [
     { id: 'about', label: 'ABOUT' },
+    { id: 'skills', label: 'SKILLS' },
+    { id: 'certifications', label: 'CERTIFICATES' },
     { id: 'experience', label: 'EXPERIENCE' },
     { id: 'projects', label: 'PROJECTS' },
-    { id: 'skills', label: 'SKILLS' },
     { id: 'contact', label: 'CONTACT' }
   ];
 

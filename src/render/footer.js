@@ -18,7 +18,7 @@ export function renderFooter({ footer, identity, contact }) {
   // Left Column: Contact Channels & Inquiries
   const leftCol = document.createElement('div');
   const contactText = (contact && contact.text) ||
-    'I am looking for internship and collaboration conversations in mechanical design, structural analysis, and electromechanical prototyping. Feel free to reach out directly or send a message.';
+    'I am looking for internship and collaboration conversations in mechanical design and structural analysis. Feel free to reach out directly or send a message.';
 
   leftCol.innerHTML = `
     <h2 class="footer-thanh-title">CONTACT</h2>

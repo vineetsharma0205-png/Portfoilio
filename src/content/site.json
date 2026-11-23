@@ -2,10 +2,10 @@
   "meta": {
     "siteUrl": "https://YOUR-DOMAIN.vercel.app",
     "title": "Vineet Sharma | Mechanical Engineering",
-    "description": "Mechanical engineering student at IIITDM Kurnool working on CAD/CAE, structural FEA, and electromechanical prototyping.",
+    "description": "Mechanical engineering student working on CAD/CAE and structural FEA.",
     "ogImage": "/og-image.png"
   },
-  "sections": ["about", "experience", "projects", "skills", "certifications", "contact"],
+  "sections": ["about", "skills", "certifications", "experience", "projects", "contact"],
   "identity": {
     "name": "Vineet Sharma",
     "location": "Hyderabad, India",
@@ -16,25 +16,19 @@
     "resume": "/resume.pdf"
   },
   "hero": {
-    "descriptor": "Working on CAD/CAE, structural FEA, and electromechanical prototyping.",
+    "descriptor": "Working on CAD/CAE and structural FEA.",
     "primaryCta": { "label": "View projects", "href": "#projects" },
     "secondaryCta": { "label": "Resume", "href": "/resume.pdf" },
     "specs": [
       { "label": "Location", "value": "Hyderabad, India" },
       { "label": "Degree", "value": "B.Tech Mechanical Engineering, 2023-2027" },
-      { "label": "Focus", "value": "Suspension design, mechanism design, embedded prototyping" }
+      { "label": "Focus", "value": "Suspension design, mechanism design, structural FEA" }
     ]
   },
   "about": {
     "paragraphs": [
-      "I am an undergraduate mechanical engineering student with hands-on experience in CAD/CAE, structural FEA, electromechanical prototyping, and system-level vehicle design.",
+      "I am an undergraduate mechanical engineering student with hands-on experience in CAD/CAE, structural FEA, and system-level vehicle design.",
       "My work spans IIT Roorkee research internship, BAJA SAE suspension engineering, and multi-disciplinary fabrication projects, each validated with measurable real-world results."
-    ],
-    "metrics": [
-      { "value": "12%", "label": "Unsprung mass reduction", "source": "BAJA SAE suspension" },
-      { "value": "10%", "label": "Build cost reduction", "source": "Go-kart" },
-      { "value": "15%", "label": "Assembly time reduction", "source": "Ambient Node" },
-      { "value": "~8%", "label": "Structural efficiency gain", "source": "All-terrain rover" }
     ]
   },
   "experience": [
@@ -102,12 +96,12 @@
       "start": "Dec 2025",
       "end": "Present",
       "featured": false,
-      "summary": "Modular electromechanical lamp emphasizing repeatability, thermal clearance, and serviceability.",
+      "summary": "Modular kinetic LED lamp emphasizing repeatability, thermal clearance, and serviceability.",
       "details": [
         "Parametric 3D CAD assemblies with articulated joints and protective enclosures for sensors and power electronics.",
         "Modular architecture reduced assembly time by 15%."
       ],
-      "tags": ["Parametric CAD", "Electromechanical", "Modular design"],
+      "tags": ["Parametric CAD", "Kinetic Design", "Modular Design"],
       "image": { "src": "/images/ambient-node.jpg", "alt": "Ambient Node modular kinetic LED desk lamp industrial design CAD render", "placeholder": "Image placeholder: lamp assembly" },
       "link": ""
     },
@@ -155,7 +149,7 @@
   ],
   "contact": {
     "heading": "Get in touch",
-    "text": "I am looking for internship and collaboration conversations in mechanical design, structural analysis, and mechatronics.",
+    "text": "I am looking for internship and collaboration conversations in mechanical design and structural analysis.",
     "formEnabled": true
   },
   "footer": { "text": "Built with Vite and vanilla JS." }
