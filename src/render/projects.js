@@ -73,7 +73,7 @@ export function renderProjects(projectsList, indexString = '03') {
   const bottomActions = document.createElement('div');
   bottomActions.className = 'projects-bottom-actions';
   bottomActions.innerHTML = `
-    <a href="https://github.com/Teeniv-16" target="_blank" rel="noopener noreferrer" class="btn-black-outline">
+    <a href="https://github.com/vineetsharma0205-png" target="_blank" rel="noopener noreferrer" class="btn-black-outline">
       View CAD Repositories on GitHub ↗
     </a>
   `;
