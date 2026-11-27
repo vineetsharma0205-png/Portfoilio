@@ -101,9 +101,10 @@
         "Parametric 3D CAD assemblies with articulated joints and protective enclosures for sensors and power electronics.",
         "Modular architecture reduced assembly time by 15%."
       ],
-      "tags": ["Parametric CAD", "Kinetic Design", "Modular Design"],
+      "tags": ["Autodesk Fusion 360", "Parametric CAD", "Kinetic Design", "Modular Design"],
       "image": { "src": "/images/ambient-node.jpg", "alt": "Ambient Node modular kinetic LED desk lamp industrial design CAD render", "placeholder": "Image placeholder: lamp assembly" },
-      "link": ""
+      "link": "https://github.com/vineetsharma0205-png/Portfoilio/tree/main/cad-projects/fusion-360/pdp-kinetic-lamp",
+      "linkLabel": "View Fusion 360 CAD Models on GitHub"
     },
     {
       "id": "rover-cad",

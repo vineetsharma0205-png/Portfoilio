@@ -125,8 +125,8 @@ export function openBlueprintDrawer(project, catalogIndex = 1) {
 
       ${project.link && project.link.trim() !== '' ? `
         <div style="margin-top: var(--space-2); padding-top: var(--space-3); border-top: 1px dashed var(--gatefold-line);">
-          <a href="${project.link}" class="btn btn-primary" style="display: inline-flex; width: auto;">
-            <span>Open External Documentation</span>
+          <a href="${project.link}" class="btn btn-primary" style="display: inline-flex; width: auto;" ${project.link.startsWith('http') ? 'target="_blank" rel="noopener noreferrer"' : ''}>
+            <span>${project.linkLabel || 'Open External Documentation'}</span>
             <span aria-hidden="true">↗</span>
           </a>
         </div>
